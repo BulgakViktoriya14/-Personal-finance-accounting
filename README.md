@@ -1,2 +1,2 @@
-# -Personal-finance-accounting
+# Personal finance accounting
 Vue Js application
