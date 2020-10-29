@@ -1,8 +1,11 @@
-import logo from './img/logo.svg';
+import React from 'react';
 import './style/style.css';
+import Header from './components/header/Header.js';
 
-function App() {
-  return <h1>My site!</h1>;
+class App extends React.Component {
+	render() {
+		return <Header/>;
+	}
 }
 
 export default App;
