@@ -1,26 +1,21 @@
 import React from 'react';
-import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
+import {BrowserRouter as Router,Link} from "react-router-dom";
 
 
 class Sidebar extends React.Component {
 	render() {
 		return (
-			<aside class="sidebar">
-			 <Router>
-				<nav>
-		        	<ul>
-		        	<li>
-		        		<Link to="/">Home</Link>
-		            </li>
-		            <li>
-		        		<Link to="/about">About</Link>
-		        	</li>
-		            <li>
-		        		<Link to="/users">Users</Link>
-		            </li>
-		          </ul>
-		        </nav>
-		    </Router>
+			<aside className="sidebar">
+				<nav className="menu">
+					<ul className="menu-list">
+						<li className="menu-item">
+							<Link to="/income" className="menu-link">Income</Link>
+						</li>
+						<li className="menu-item">
+							<Link to="/expenses" className="menu-link">Expenses</Link>
+						</li>
+					</ul>
+				</nav>
 			</aside>
 		)
 	}

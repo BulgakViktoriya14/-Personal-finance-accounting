@@ -1,26 +1,21 @@
 import React from 'react';
-import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
+import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
+import Income from './../content/Income.js';
+import Expenses from './../content/Expenses.js';
 
 import Sidebar from './Sidebar.js';
 
 class ContentWrapper extends React.Component {
 	render() {
 		return (
-			<section class="content">
-				<Sidebar/>
+			<section className="content">
 				<Router>
-				<Switch>
-	        		<Route path="/about">
-	            		<h2>About</h2>
-	        		</Route>
-	        		<Route path="/users">
-	        			<h2>Users</h2>
-	        		</Route>
-	        		<Route path="/">
-	        			<h2>Home</h2>
-	        		</Route>
-	        	</Switch>
-	        	</Router>
+					<Sidebar/>
+					<Switch>
+						<Route path="/income" component={Income}/>
+						<Route path="/expenses" component={Expenses}/>
+					</Switch>
+				</Router>
 			</section>
 		)
 	}

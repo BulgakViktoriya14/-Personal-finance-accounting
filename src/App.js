@@ -6,7 +6,7 @@ import ContentWrapper from './components/common/ContentWrapper.js';
 class App extends React.Component {
 	render() {
 		return (
-			<div class="site">
+			<div className="site">
 				<Header/>
 				<ContentWrapper/>
 			</div>

@@ -22,26 +22,26 @@ h1,h1,h3,h4,h5,h6 {
 	flex-basis: 100%;
 	background-color: #000;
 	justify-content: space-between;
-    padding: 10px 40px;
+	padding: 10px 40px;
 }
 .logo {
 	flex-basis: 20%;
 }
 .header__profile {
 	display: flex;
-    align-items: center;
+	align-items: center;
 }
 .header__photo {
 	width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    margin: 0 0 0 15px;
+	height: 70px;
+	border-radius: 50%;
+	margin: 0 0 0 15px;
 }
 .header__photo img {
-    border-radius: 50%;
+	border-radius: 50%;
 }
 .header__name {
 	color: #fff;
-    font-size: 18px;
-    line-height: 20px;
+	font-size: 18px;
+	line-height: 20px;
 }

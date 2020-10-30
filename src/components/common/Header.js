@@ -5,7 +5,7 @@ import ProfileMini from './ProfileMini.js';
 class Header extends React.Component {
 	render() {
 		return (
-			<header class="header">
+			<header className="header">
 				<Logo/>
 				<ProfileMini/>
 			</header>
