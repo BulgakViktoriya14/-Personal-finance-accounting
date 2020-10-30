@@ -3,7 +3,11 @@ import {BrowserRouter as Router} from "react-router-dom";
 
 class Income extends React.Component {
 	render() {
-		return (<h2>Income</h2>)
+		return (
+			<div className="wrapper">
+				<h1 className="title">Доходы</h1>
+			</div>
+		)
 	}
 }
 export default Income;

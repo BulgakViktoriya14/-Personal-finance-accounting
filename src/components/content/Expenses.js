@@ -3,7 +3,11 @@ import {BrowserRouter as Router} from "react-router-dom";
 
 class Expenses extends React.Component {
 	render() {
-		return (<h2>Expenses</h2>)
+		return (
+			<div className="wrapper">
+				<h1 className="title">Расходы</h1>
+			</div>
+			)
 	}
 }
 export default Expenses;
