@@ -1,5 +1,6 @@
 import React from 'react';
-import {BrowserRouter as Router,Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
+import MoneyAccount from './MoneyAccount.js';
 
 
 class Sidebar extends React.Component {
@@ -16,6 +17,7 @@ class Sidebar extends React.Component {
 						</li>
 					</ul>
 				</nav>
+				<MoneyAccount/>
 			</aside>
 		)
 	}

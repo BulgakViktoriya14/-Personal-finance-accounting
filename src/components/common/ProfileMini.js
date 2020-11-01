@@ -1,5 +1,5 @@
 import React from 'react';
-import photo from './../../img/profile.png';
+import photo from './../../images/profile.png';
 
 class ProfileMini extends React.Component {
 	render() {
