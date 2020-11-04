@@ -1,9 +1,35 @@
 import React from 'react';
 
 class CreationCard extends React.Component {
+	constructor(props) {
+		super(props);
+		this.addCart = this.addCart.bind(this);
+		this.createCard = this.createCard.bind(this);
+		this.checkFields = this.checkFields.bind(this);
+	}
+
+	createCard() {
+		console.log("create");
+	}
+	checkFields() {
+		if(this.props.type === "expenses" && Number(document.querySelector("#sum").value) >= Number(this.props.sum)) {
+			console.log("Ваш баланс не позвоялет выполнить данную операцию");
+			return false;
+		}
+		return true;
+	}
+
 	addCart() {
-    	console.log("add card")
-  	}
+		if(!this.checkFields()) return;
+		if(this.props.type === "income") {
+			this.createCard();
+			return this.props.setSum(Number(this.props.sum) + Number(document.querySelector("#sum").value));
+		} else {
+			this.createCard();
+			return this.props.setSum(Number(this.props.sum) - Number(document.querySelector("#sum").value));
+		} 
+	}
+	  
 	render() {
 		return (
 			<div className="creation-card">
@@ -23,4 +49,5 @@ class CreationCard extends React.Component {
 		)
 	}
 }
+
 export default CreationCard;
