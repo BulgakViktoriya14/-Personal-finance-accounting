@@ -2,6 +2,7 @@ import React from 'react';
 import CreationCard from './../card/CreationCard.js';
 import {connect} from 'react-redux';
 import setSumAction from '../../actions/actionSum.js';
+import setCardsIncomeAction from '../../actions/actionCardsIncome.js';
 import Cards from '../card/Cards.js';
 
 class Income extends React.Component {
@@ -9,7 +10,7 @@ class Income extends React.Component {
 		return (
 			<div className="wrapper">
 				<h1 className="title">Доходы</h1>
-				<CreationCard  type="income" sum={this.props.sum} setSum={this.props.setSumFunction}/>
+				<CreationCard  type="income" sum={this.props.sum} setSum={this.props.setSumFunction} setCards={this.props.setCardsIncomeFunction}/>
 				<h2 className="subtitle">Ваши карточки доходов</h2>
 				<Cards/>
 			</div>
@@ -27,6 +28,9 @@ function mapDispatchToProps(dispatch) {
 	return {
 		setSumFunction: sum => {
 			dispatch(setSumAction(sum))
+		},
+		setCardsIncomeFunction: cardsIncome => {
+			dispatch(setCardsIncomeAction(cardsIncome))
 		}
 	}
 }
