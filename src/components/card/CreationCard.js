@@ -44,12 +44,19 @@ class CreationCard extends React.Component {
 
 	addCart() {
 		if(!this.checkFields()) return;
+		let card = this.createCard();
+		let array = this.props.cards;
+		let newArray = array.concat([card]);
 		if(this.props.type === "income") {
-			//return this.props.setSum(Number(this.props.sum) + Number(document.querySelector("#sum").value));
-			return this.props.setCards(this.createCard());
+			return (
+				this.props.setCards(newArray),
+				this.props.setSum(Number(this.props.sum) + Number(document.querySelector("#sum").value))
+			)
 		} else {
-			this.createCard();
-			return this.props.setSum(Number(this.props.sum) - Number(document.querySelector("#sum").value));
+			return (
+				this.props.setCards(newArray),
+				this.props.setSum(Number(this.props.sum) - Number(document.querySelector("#sum").value))
+			)
 		} 
 	}
 	  

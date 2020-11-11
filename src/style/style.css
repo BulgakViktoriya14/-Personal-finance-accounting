@@ -153,8 +153,14 @@ a {
     display: flex;
     flex-direction: column;
     padding: 0;
-    flex-basis: 25%;
+    flex-basis: 19%;
     margin: 0;
+}
+.fieldset:nth-child(3) {
+    flex-basis: 9%;
+}
+.fieldset:nth-child(4) {
+    flex-basis: 29%;
 }
 .label {
 	font-size: 16px;
@@ -168,6 +174,9 @@ a {
     outline: none;
 	border: none;
 	border-bottom: 1px solid #000;
+}
+textarea {
+	height: 27px;
 }
 .button-add-card {
 	font-size: 18px;
