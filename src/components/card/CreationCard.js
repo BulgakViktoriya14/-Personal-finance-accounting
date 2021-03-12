@@ -64,23 +64,23 @@ class CreationCard extends React.Component {
 		return (
 			<div className="creation-card">
 				<h2 className="subtitle">Создать карточку</h2>
-				<form className="form">
-					<fieldset className="fieldset">
-    					<label htmlFor="name" className="label">Название</label>
-    					<input type="text" id="name" className="input"/>
-    				</fieldset>
-					<fieldset className="fieldset">
-    					<label htmlFor="category" className="label">Категория</label>
-    					<input type="text" id="category" className="input"/>
-    				</fieldset>
-    				<fieldset className="fieldset">
-    					<label htmlFor="sum" className="label">Сумма</label>
-    					<input type="number" id="sum" className="input"/>
-    				</fieldset>
-					<fieldset className="fieldset">
-    					<label htmlFor="description" className="label">Описание</label>
-    					<textarea type="number" id="description" className="input"></textarea>
-    				</fieldset>
+				<form className="form form-add-card">
+					<div className="form__item">
+    					<label htmlFor="name" className="form__label">Название</label>
+    					<input type="text" id="name" className="form__input"/>
+    				</div>
+					<div className="form__item">
+    					<label htmlFor="category" className="form__label">Категория</label>
+    					<input type="text" id="category" className="form__input"/>
+    				</div>
+    				<div className="form__item">
+    					<label htmlFor="sum" className="form__label">Сумма</label>
+    					<input type="number" id="sum" className="form__input"/>
+    				</div>
+					<div className="form__item">
+    					<label htmlFor="description" className="form__label">Описание</label>
+    					<textarea type="number" id="description" className="form__input"></textarea>
+    				</div>
     				<input type="button" className="button-add-card" value="Добавить карточку" onClick={this.addCart}/>
 				</form>
 			</div>

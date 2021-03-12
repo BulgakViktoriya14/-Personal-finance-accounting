@@ -1,0 +1,43 @@
+.cards {
+	width: 102%;
+    margin: 0 0 0 -1%;
+}
+
+.card {
+	flex-basis: 20%;
+    box-shadow: 2px 2px 6px #b7b7b7;
+	padding: 20px;    
+	margin: 15px 1%;
+
+    &__title {
+        font-size: 18px;
+        line-height: 22px;
+        margin: 0 0 10px 0;
+    }
+
+    &__category {
+        font-size: 16px;
+        font-weight: 300;
+        margin: 0 0 40px 0;
+    }
+
+    &__bottom {
+        margin: 0;
+        display: flex;
+        flex-basis: 100%;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
+    &__sum {
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: bold;
+        color: #b90000;
+    }
+    &__date {
+        font-size: 14px;
+        line-height: 14px;
+        color: #828282;
+    }
+}

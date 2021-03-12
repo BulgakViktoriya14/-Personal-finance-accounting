@@ -1,5 +1,5 @@
 import React from 'react';
-import './style/style.css';
+import './style/scss/index.scss';
 import Header from './components/common/Header.js';
 import ContentWrapper from './components/common/ContentWrapper.js';
 

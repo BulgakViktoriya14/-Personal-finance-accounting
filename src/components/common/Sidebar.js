@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import MoneyAccount from './MoneyAccount.js';
 
 
@@ -10,10 +10,10 @@ class Sidebar extends React.Component {
 				<nav className="menu">
 					<ul className="menu-list">
 						<li className="menu-item">
-							<Link to="/income" className="menu-link">Доходы</Link>
+							<NavLink exact to="/income" className="menu-link" activeClassName="menu-link_active">Доходы</NavLink>
 						</li>
 						<li className="menu-item">
-							<Link to="/expenses" className="menu-link">Расходы</Link>
+							<NavLink exact to="/expenses" className="menu-link" activeClassName="menu-link_active">Расходы</NavLink>
 						</li>
 					</ul>
 				</nav>

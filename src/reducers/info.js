@@ -11,7 +11,8 @@ const initialState = {
     cardsExpenses: [
         {id: "card1",name: "Поход в магазин", sum: 50, category: "Магазин", date: "03.11.2020", description: "яйца, сметана, фрукты, тетради, книги"},
         {id: "card2",name: "Оплата проездного", sum: 15, category: "Транспорт", date: "03.11.2020", description: "метро на 15 дней"},
-    ]
+    ],
+    
 }
 
 export default function userInfo(state = initialState, action) {

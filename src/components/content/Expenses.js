@@ -17,6 +17,7 @@ class Expenses extends React.Component {
 			)
 	}
 }
+
 function mapStateToProps(state) {
 	return {
 		cardsExpenses: state.userInfo.cardsExpenses,
