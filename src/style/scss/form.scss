@@ -33,6 +33,32 @@
         border-bottom: 1px solid #000;
     }
 
+    &__wrapper-buttons {
+        display: flex;
+        flex-basis: 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin: 25px 0 0 0;
+    }
+
+    &__submit {
+        background-color: #fff;
+        color: #b90000;
+        font-size: 16px;
+        line-height: 16px;
+        padding: 10px 15px;
+        border: 2px solid #b90000;
+        transition: 200ms;
+        cursor: pointer;
+        font-weight: bold;
+
+        &:hover,
+        &:active {
+            background-color: #b90000;
+            color: #fff;
+        }
+    }
+
     textarea {
         height: 28px;
     }
@@ -69,5 +95,11 @@
         flex-basis: 50%;
         max-width: 500px;
         margin: 0 auto;
+
+        .form__item {
+            flex-basis: 100%;
+            margin: 25px 0 0 0;
+            padding: 25px 0 0 0;
+        }
     }
 }
