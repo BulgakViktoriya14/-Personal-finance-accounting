@@ -1,5 +1,5 @@
 const initialState = {
-    user: "Булгак Виктория",
+    user: "",
     sum: 0,
     cardsIncome: [
         {id: "card1",name: "Зарплата за ноябрь", sum: 200, category: "Зарплата", date: "03.11.2020", description: "Моя зарпата за ноябрь"},
