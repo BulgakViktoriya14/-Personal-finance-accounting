@@ -1,7 +1,6 @@
 import React from 'react';
 import photo from './../../images/profile.png';
 import firebase from 'firebase';
-import {connect} from 'react-redux';
 
 class ProfileMini extends React.Component {
 	constructor(props) {
@@ -47,10 +46,4 @@ class ProfileMini extends React.Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return {
-		user: state.userInfo.user
-	}
-}
-
-export default connect(mapStateToProps)(ProfileMini);
+export default ProfileMini;

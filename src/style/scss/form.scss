@@ -1,40 +1,36 @@
-.form-add-card {
+.form {
     display: flex;
-    justify-content: space-between;
-    flex-basis: 100%;
 
-    .form {
-        &__item {
-            border: none;
-            display: flex;
-            flex-direction: column;
-            padding: 0;
-            flex-basis: 19%;
-            margin: 0;
+    &__item {
+        border: none;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        flex-basis: 19%;
+        margin: 0;
 
-            &:nth-child(3) {
-                flex-basis: 9%;
-            }
-
-            &:nth-child(4) {
-                flex-basis: 29%;
-            }
+        &:nth-child(3) {
+            flex-basis: 9%;
         }
 
-        &__label {
-            font-size: 16px;
-            font-weight: 600;
-            margin: 0 0 5px 0;
+        &:nth-child(4) {
+            flex-basis: 29%;
         }
+    }
 
-        &__input {
-            padding: 5px;
-            font-size: 14px;
-            line-height: 14px;
-            outline: none;
-            border: none;
-            border-bottom: 1px solid #000;
-        }
+    &__label {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0 0 5px 0;
+    }
+
+    &__input {
+        padding: 5px;
+        font-size: 14px;
+        line-height: 14px;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid #000;
     }
 
     textarea {
@@ -61,5 +57,17 @@
         &:active {
             box-shadow: none;
         }
+    }
+
+    &-add-card {
+        justify-content: space-between;
+        flex-basis: 100%;
+    }
+
+    &-login-checkin {
+        flex-direction: column;
+        flex-basis: 50%;
+        max-width: 500px;
+        margin: 0 auto;
     }
 }

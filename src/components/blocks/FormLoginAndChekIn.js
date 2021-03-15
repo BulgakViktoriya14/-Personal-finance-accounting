@@ -42,16 +42,16 @@ class FormLoginAndChekIn extends React.Component {
 		return (
 			<form className="form form-login-checkin">
 				<div className="form__item">
+					<label htmlFor="email" className="form__label">E-mail</label>
 				    <input type="email" id="email" name="email" className="form__input" requared="requared" onChange={this.handleChange}/>
-				    <label htmlFor="email" className="form__label">E-mail</label>
 				</div>
 			    <div className="form__item">
+			    	<label htmlFor="password" className="form__label">Пароль</label>
 			        <input type="password" id="password" className="form__input" name="password" requared="requared" onChange={this.handleChange}/>
-			        <label htmlFor="password" className="form__label">Пароль</label>
 				 </div>
 				<div className="form__wrapper-buttons">
 				    <input className="form__submit" type="submit" name="submit" value={this.props.textButton} onClick={this.logIntoAccount}/>
-				  	 <NavLink to={this.props.link} className="form__link">{this.props.textLink}</NavLink>
+				  	<NavLink to={this.props.link} className="form__link">{this.props.textLink}</NavLink>
 			    </div>
 			</form>
 		)
