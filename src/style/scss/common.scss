@@ -2,16 +2,36 @@
 	box-sizing: border-box;
 }
 
+@font-face {
+	font-family: 'Montserrat';
+	src: url('../../fonts/Montserrat-Regular.woff') format('woff');
+	font-weight: normal;
+	font-display: swap;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Montserrat-SemiBold';
+	src: url('../../fonts/Montserrat-SemiBold.woff') format('woff');
+	font-weight: normal;
+	font-display: swap;
+	font-style: normal;
+}
+
 body {
 	margin: 0;
 	padding: 0;
 	color: #000;
     overflow-y: hidden;
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+	line-height: 17px;
+	letter-spacing: 0.3px;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	margin: 0;
+	font-family: 'Montserrat-SemiBold', sans-serif;
 }
 
 ul {
@@ -23,6 +43,22 @@ ul {
 a {
 	text-decoration: none;
 	color: #000;
+	position: relative;
+
+	&:after {
+		content: "";
+		position: absolute;
+		bottom: -3px;
+		left: 0;
+		width: 0;
+		height: 1.5px;
+		background-color: #000;
+		transition: 300ms;
+	}
+
+	&:hover:after {
+		width: 100%;
+	}
 }
 
 .container {
@@ -53,6 +89,9 @@ a {
 .wrapper {
 	flex-basis: 80%;
 	padding: 30px;
+	height: calc(100vh - 110px);
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 .title {

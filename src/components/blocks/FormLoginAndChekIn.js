@@ -23,8 +23,7 @@ class FormLoginAndChekIn extends React.Component {
 		}
 	}
 
-	logIntoAccount = (e) => {
-		e.preventDefault();
+	logIntoAccount = () => {
 		const { email, password } = this.state;
 
 		if(this.props.account) {
@@ -50,7 +49,7 @@ class FormLoginAndChekIn extends React.Component {
 			        <input type="password" id="password" className="form__input" name="password" requared="requared" onChange={this.handleChange}/>
 				 </div>
 				<div className="form__wrapper-buttons">
-				    <input className="form__submit" type="submit" name="submit" value={this.props.textButton} onClick={this.logIntoAccount}/>
+				    <input className="form__submit" type="button" name="submit" value={this.props.textButton} onClick={this.logIntoAccount}/>
 				  	<NavLink to={this.props.link} className="form__link">{this.props.textLink}</NavLink>
 			    </div>
 			</form>

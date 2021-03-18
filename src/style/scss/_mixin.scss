@@ -1,0 +1,18 @@
+@mixin buttonRed {
+  background-color: #fff;
+  color: #b90000;
+  font-size: 16px;
+  line-height: 16px;
+  padding: 10px 15px;
+  border: 2px solid #b90000;
+  transition: 200ms;
+  cursor: pointer;
+  font-weight: bold;
+  outline: none;
+
+  &:hover,
+  &:active {
+    background-color: #b90000;
+    color: #fff;
+  }
+}

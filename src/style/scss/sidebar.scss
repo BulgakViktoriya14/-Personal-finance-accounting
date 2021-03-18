@@ -20,27 +20,12 @@
 		position: relative;
 		padding: 0 0 3px 0;
 
-		&:after {
-			content: "";
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			width: 0;
-			height: 1.5px;
-			background-color: #000;
-			transition: 300ms;
-		}
-
 		&_active {
 			color: #b90000;
 
 			&:after {
 				background-color: #b90000;
 			}
-		}
-
-		&:hover:after {
-			width: 100%;
 		}
 	}
 }
@@ -63,5 +48,6 @@
 	&_sum {
 		font-size: 22px;
     	line-height: 22px;
+		font-family: 'Montserrat-SemiBold', sans-serif;
 	}
 }

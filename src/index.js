@@ -9,6 +9,8 @@ import firebase from 'firebase';
 
 const store = createStore(rootReducer);
 
+// store.subscribe(() => console.log(store.getState()));
+
 const firebaseConfig = {
     apiKey: "AIzaSyD4ZOaQgincn4u2ohZbafA0KebyN68JE9E",
     authDomain: "project-pfa-e4c83.firebaseapp.com",

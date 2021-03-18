@@ -2,7 +2,6 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import MoneyAccount from './MoneyAccount.js';
 
-
 class Sidebar extends React.Component {
 	render() {
 		return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 import Income from './../content/Income.js';
 import Expenses from './../content/Expenses.js';
 import Login from './../content/Login.js';
@@ -11,16 +11,14 @@ class ContentWrapper extends React.Component {
 	render() {
 		return (
 			<section className="content">
-				<Router>
-					<Sidebar/>
-					<Switch>
-						<Route path="/check-in" component={CheckIn}/>
-						<Route path="/login" component={Login}/>	
-						<Route path="/profile" component={Profile}/>
-						<Route path="/income" component={Income}/>
-						<Route path="/expenses" component={Expenses}/>
-					</Switch>
-				</Router>
+				<Sidebar/>
+				<Switch>
+					<Route path="/check-in" component={CheckIn}/>
+					<Route path="/login" component={Login}/>
+					<Route path="/profile" component={Profile}/>
+					<Route path="/income" component={Income}/>
+					<Route path="/expenses" component={Expenses}/>
+				</Switch>
 			</section>
 		)
 	}

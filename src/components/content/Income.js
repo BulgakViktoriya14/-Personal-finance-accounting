@@ -1,8 +1,6 @@
 import React from 'react';
 import CreationCard from './../card/CreationCard.js';
 import {connect} from 'react-redux';
-import setSumAction from '../../actions/actionSum.js';
-import setCardsIncomeAction from '../../actions/actionCardsIncome.js';
 import Cards from '../card/Cards.js';
 
 class Income extends React.Component {
@@ -25,15 +23,15 @@ function mapStateToProps(state) {
 	}
 }
 
-function mapDispatchToProps(dispatch) {
-	return {
-		setSumFunction: sum => {
-			dispatch(setSumAction(sum))
-		},
-		setCardsIncomeFunction: cardsIncome => {
-			dispatch(setCardsIncomeAction(cardsIncome))
-		}
-	}
-}
+// function mapDispatchToProps(dispatch) {
+// 	return {
+// 		setSumFunction: sum => {
+// 			dispatch(setSumAction(sum))
+// 		},
+// 		setCardsIncomeFunction: cardsIncome => {
+// 			dispatch(setCardsIncomeAction(cardsIncome))
+// 		}
+// 	}
+// }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Income);
+export default connect(mapStateToProps)(Income);

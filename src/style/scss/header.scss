@@ -24,12 +24,24 @@
 		&_hidden {
 			display: none;
 		}
+
+		&:hover {
+			.header__name a:after {
+				width: 100%;
+			}
+		}
 	}
 
 	&__name {
-		color: #fff;
-		font-size: 18px;
-		line-height: 20px;
+		a {
+			color: #fff;
+			font-size: 18px;
+			line-height: 20px;
+
+			&:after {
+				background-color: #fff;
+			}
+		}
 	}
 
 	.logo {

@@ -14,7 +14,7 @@ class MoneyAccount extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		sum: state.userInfo.sum
+		sum: state.userInfo.userSum
 	}
 }
 

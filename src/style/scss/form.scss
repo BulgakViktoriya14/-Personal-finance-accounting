@@ -20,8 +20,10 @@
 
     &__label {
         font-size: 16px;
+        line-height: 16px;
         font-weight: 600;
-        margin: 0 0 5px 0;
+        margin: 0 0 5px 5px;
+        font-family: 'Montserrat-SemiBold', sans-serif;
     }
 
     &__input {
@@ -42,20 +44,15 @@
     }
 
     &__submit {
-        background-color: #fff;
-        color: #b90000;
-        font-size: 16px;
-        line-height: 16px;
-        padding: 10px 15px;
-        border: 2px solid #b90000;
-        transition: 200ms;
-        cursor: pointer;
-        font-weight: bold;
+        @include buttonRed;
+    }
 
-        &:hover,
-        &:active {
+    &__link {
+        font-weight: bold;
+        color: #b90000;
+
+        &:after {
             background-color: #b90000;
-            color: #fff;
         }
     }
 
@@ -100,6 +97,31 @@
             flex-basis: 100%;
             margin: 25px 0 0 0;
             padding: 25px 0 0 0;
+        }
+    }
+
+    &.profile__info-form {
+        .form__item {
+            width: 100%;
+            margin: 0 0 40px 0;
+            flex-basis: 0;
+        }
+
+        .form__wrapper-buttons {
+            margin: auto 0 0 0;
+        }
+    }
+
+    &-change-password {
+        flex-direction: column;
+
+        .form__item {
+            margin: 0 0 30px 0;
+        }
+
+        .form__submit {
+            max-width: fit-content;
+            margin: 0 auto;
         }
     }
 }
