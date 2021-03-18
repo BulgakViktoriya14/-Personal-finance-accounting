@@ -46,7 +46,7 @@ class Profile extends React.Component {
 		const db = firebase.database();
 		this.setState({ flag: !this.state.flag } );
 
-		db.ref('/users/' + this.state.idUser).set({
+		db.ref('/users/' + this.state.idUser).update({
 			name: this.props.userName,
 			email: this.props.userEmail,
 			money: this.props.userSum
