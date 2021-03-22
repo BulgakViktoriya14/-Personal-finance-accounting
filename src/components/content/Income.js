@@ -8,7 +8,7 @@ class Income extends React.Component {
 		return (
 			<div className="wrapper">
 				<h1 className="title">Доходы</h1>
-				<CreationCard  type="income" cards={this.props.cardsIncome} sum={this.props.sum} setSum={this.props.setSumFunction} setCards={this.props.setCardsIncomeFunction}/>
+				<CreationCard type="income"/>
 				<h2 className="subtitle">Ваши карточки доходов</h2>
 				<Cards cards={this.props.cardsIncome}/>
 			</div>
@@ -19,19 +19,7 @@ class Income extends React.Component {
 function mapStateToProps(state) {
 	return {
 		cardsIncome: state.userInfo.cardsIncome,
-		sum: state.userInfo.sum
 	}
 }
 
-// function mapDispatchToProps(dispatch) {
-// 	return {
-// 		setSumFunction: sum => {
-// 			dispatch(setSumAction(sum))
-// 		},
-// 		setCardsIncomeFunction: cardsIncome => {
-// 			dispatch(setCardsIncomeAction(cardsIncome))
-// 		}
-// 	}
-// }
-
-export default connect(mapStateToProps)(Income);
+export default connect(mapStateToProps, null)(Income);

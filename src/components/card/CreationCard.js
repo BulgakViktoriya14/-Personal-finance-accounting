@@ -1,13 +1,15 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import firebase from "firebase";
+import {setUserExpensesCardsAction} from "../../actions/actionUserExpensesCards.js";
+import {setUserIncomeCardsAction} from "../../actions/actionUserIncomeCards.js";
 
 class CreationCard extends React.Component {
 	constructor(props) {
 		super(props);
-		this.addCart = this.addCart.bind(this);
-		this.createCard = this.createCard.bind(this);
-		this.checkFields = this.checkFields.bind(this);
 	}
-	getDate() {
+
+	getDate = () => {
 		let now = new Date();
 		let dd = now.getDate();
 		let mm = now.getMonth() + 1;
@@ -19,22 +21,22 @@ class CreationCard extends React.Component {
 	  
 		return dd + '.' + mm + '.' + yy;
 	}
-	createCard() {
+
+	createCard = () => {
 		let sum = document.querySelector("#sum").value;
 		let category = document.querySelector("#category").value;
 		let name = document.querySelector("#name").value;
 		let description = document.querySelector("#description").value;
 		let date = this.getDate();
 		return  {
-			id: "card",
-			name: name, 
-			sum: sum, 
-			category: category, 
+			title: name,
+			money: sum,
+			category: category,
 			date: date,
 			description: description
 		}
 	}
-	checkFields() {
+	checkFields = () => {
 		if(this.props.type === "expenses" && Number(document.querySelector("#sum").value) >= Number(this.props.sum)) {
 			console.log("Ваш баланс не позвоялет выполнить данную операцию");
 			return false;
@@ -42,22 +44,21 @@ class CreationCard extends React.Component {
 		return true;
 	}
 
-	addCart() {
+	addCart = () => {
 		if(!this.checkFields()) return;
+
+		let _this = this;
 		let card = this.createCard();
-		let array = this.props.cards;
-		let newArray = array.concat([card]);
+
 		if(this.props.type === "income") {
-			return (
-				this.props.setCards(newArray),
-				this.props.setSum(Number(this.props.sum) + Number(document.querySelector("#sum").value))
-			)
+			firebase.database().ref('/users/user' + _this.props.userId + '/cardsIncome/card' + Object.keys(_this.props.cardsIncome).length).set({
+				category: card.category, date: card.date, money: card.money, title: card.title, description: card.description
+			})
 		} else {
-			return (
-				this.props.setCards(newArray),
-				this.props.setSum(Number(this.props.sum) - Number(document.querySelector("#sum").value))
-			)
-		} 
+			firebase.database().ref('/users/user' + _this.props.userId + '/cardsExpenses/card' + Object.keys(_this.props.cardsExpenses).length).set({
+				category: card.category, date: card.date, money: card.money, title: card.title, description: card.description
+			})
+		}
 	}
 	  
 	render() {
@@ -78,8 +79,8 @@ class CreationCard extends React.Component {
     					<input type="number" id="sum" className="form__input"/>
     				</div>
 					<div className="form__item">
-    					<label htmlFor="description" className="form__label">Описание</label>
-    					<textarea type="number" id="description" className="form__input"></textarea>
+    					<label htmlFor="description" className="form__label">Описание<span className="form__notice">(30 символов)</span></label>
+    					<textarea maxLength="30" type="text" id="description" className="form__input"></textarea>
     				</div>
     				<input type="button" className="button-add-card" value="Добавить карточку" onClick={this.addCart}/>
 				</form>
@@ -88,4 +89,25 @@ class CreationCard extends React.Component {
 	}
 }
 
-export default CreationCard;
+function mapStateToProps(state) {
+	return {
+		cardsIncome: state.userInfo.cardsIncome,
+		cardsExpenses: state.userInfo.cardsExpenses,
+		userId: state.userInfo.idUser
+	}
+}
+
+
+function matchDispatchToProps(dispatch) {
+	return {
+		setUserIncomeCardsFunction: (userId) => {
+			dispatch(setUserIncomeCardsAction(userId))
+		},
+
+		setUserExpensesCardsFunction: (cards) => {
+			dispatch(setUserExpensesCardsAction(cards))
+		}
+	}
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(CreationCard);

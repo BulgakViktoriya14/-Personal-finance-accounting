@@ -3,20 +3,49 @@ import React from 'react';
 class Cards extends React.Component {
     constructor(props) {
         super(props);
-    } 
-	render() {
+        this.state = {
+            arrayCards: []
+        }
+    }
+
+    componentDidMount() {
+        let arrayCards = [];
+        for(let card in this.props.cards) {
+            arrayCards.push(this.props.cards[card]);
+        }
+        this.setState({arrayCards: arrayCards})
+    }
+
+    openMoreDetails = (e) => {
+        e.target.parentElement.classList.add("open");
+    }
+
+    closeMoreDetails = (e) => {
+        e.target.parentElement.parentElement.classList.remove("open");
+    }
+
+    render() {
 		return (
             <div className="container cards">
-                {this.props.cards.map((item) =>
-                    <article key={item.id} className="card">
-                        <h3 className="cart__title">{item.name}</h3>
+                {this.state.arrayCards.map((item) =>
+                    <article className="card">
+                        <h3 className="card__title">{item.title}</h3>
                         <h4 className="card__category">{item.category}</h4>
+                        {item.description &&
+                            <button className="card__more-details" onClick={this.openMoreDetails}>Подробнее</button>
+                        }
                         <p className="card__bottom">
-                            <span className="card__sum">{item.sum}</span>
+                            <span className="card__sum">{item.money}</span>
                             <span className="card__date">{item.date}</span>
                         </p>
+                        {item.description &&
+                            <div className="card__description">
+                                <p>{item.description}</p>
+                                <button className="card__more-details" onClick={this.closeMoreDetails}>Скрыть</button>
+                            </div>
+                        }
                     </article>
-                )}    
+                )}
             </div>
         )
 	}

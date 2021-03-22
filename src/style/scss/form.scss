@@ -6,16 +6,9 @@
         display: flex;
         flex-direction: column;
         padding: 0;
-        flex-basis: 19%;
+        width: 100%;
         margin: 0;
-
-        &:nth-child(3) {
-            flex-basis: 9%;
-        }
-
-        &:nth-child(4) {
-            flex-basis: 29%;
-        }
+        position: relative;
     }
 
     &__label {
@@ -26,13 +19,24 @@
         font-family: 'Montserrat-SemiBold', sans-serif;
     }
 
+    &__notice {
+        color: #a1a1a1;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 300;
+        margin: 0 0 0 3px;
+    }
+
     &__input {
         padding: 5px;
         font-size: 14px;
         line-height: 14px;
         outline: none;
         border: none;
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid $colorBlack;
+
+        &[readonly] {
+            cursor: default;
+        }
     }
 
     &__wrapper-buttons {
@@ -43,16 +47,17 @@
         margin: 25px 0 0 0;
     }
 
-    &__submit {
+    &__submit,
+    .button-add-card {
         @include buttonRed;
     }
 
     &__link {
         font-weight: bold;
-        color: #b90000;
+        color: $colorRed;
 
         &:after {
-            background-color: #b90000;
+            background-color: $colorRed;
         }
     }
 
@@ -60,31 +65,42 @@
         height: 28px;
     }
 
-    .button-add-card {
-        font-size: 18px;
-        color: #000;
-        line-height: 18px;
-        padding: 10px;
-        background-color: #fff;
-        border: 2px solid #000;
-        box-shadow: 3px 3px 4px #0000003b;
+    .button-visible-password {
+        position: absolute;
+        right: 0;
+        bottom: 7px;
+        height: 15px;
+        width: 26px;
+        background-color: $colorWhite;
+        border: none;
         outline: none;
+        background-image: url("../../images/visiblePassword.png");
+        background-size: 100% 100%;
         cursor: pointer;
-        transition: 300ms;
 
-        &:hover {
-            background-color: #000;
-            color: #fff;
-        }
-
-        &:active {
-            box-shadow: none;
+        &.button-hidden-password {
+            background-image: url("../../images/hiddenPassword.png");
         }
     }
 
     &-add-card {
         justify-content: space-between;
         flex-basis: 100%;
+
+        .form__item {
+            flex-basis: 19%;
+            width: 19%;
+
+            &:nth-child(3) {
+                flex-basis: 9%;
+                width: 9%;
+            }
+
+            &:nth-child(4) {
+                flex-basis: 29%;
+                width: 29%;
+            }
+        }
     }
 
     &-login-checkin {
@@ -123,5 +139,29 @@
             max-width: fit-content;
             margin: 0 auto;
         }
+    }
+
+    &-change-avatar {
+        flex-direction: column;
+
+        .form__item {
+            flex-basis: 100%;
+        }
+    }
+}
+
+.success-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__text {
+        margin: 0;
+        font-size: 16px;
+        line-height: 18px;
+    }
+
+    .form__submit {
+        margin: 30px 0 0 0;
     }
 }

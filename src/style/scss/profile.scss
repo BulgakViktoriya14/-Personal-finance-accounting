@@ -22,7 +22,8 @@
 
 .button-edit-profile,
 .button-change-password,
-.button-logout {
+.button-logout,
+.button-change-avatar {
   @include buttonRed;
   margin: 0 20px 0 0;
 }

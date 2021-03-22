@@ -1,5 +1,5 @@
 import React from 'react';
-import FormLoginAndChekIn from './../blocks/FormLoginAndChekIn.js';
+import FormLoginAndChekIn from '../blocks/FormLoginAndCheckIn.js';
 
 class Login extends React.Component {
 	constructor(props) {

@@ -2,7 +2,7 @@ import React from 'react';
 import './style/scss/index.scss';
 import Header from './components/common/Header.js';
 import ContentWrapper from './components/common/ContentWrapper.js';
-import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
+import {BrowserRouter as Router} from "react-router-dom";
 
 class App extends React.Component {
 	render() {

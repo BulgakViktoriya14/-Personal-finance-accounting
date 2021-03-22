@@ -15,7 +15,7 @@ class ProfileMini extends React.Component {
 					<NavLink exact to="/profile">{this.props.userName}</NavLink>
 				</h3>
 				<div className="header__photo wrapper-img">
-					<NavLink exact to="/profile"><img src={photo} alt="photo"/></NavLink>
+					<NavLink exact to="/profile"><img src={this.props.userAvatar ? this.props.userAvatar : photo} alt="photo"/></NavLink>
 				</div>
 			</div>
 		)
@@ -24,7 +24,8 @@ class ProfileMini extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		userName: state.userInfo.userName
+		userName: state.userInfo.userName,
+		userAvatar: state.userInfo.userAvatar
 	}
 }
 

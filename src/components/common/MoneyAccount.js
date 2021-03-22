@@ -18,4 +18,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps)(MoneyAccount);
+export default connect(mapStateToProps, null)(MoneyAccount);

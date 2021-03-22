@@ -1,5 +1,6 @@
 import React from 'react';
-import FormLoginAndChekIn from './../blocks/FormLoginAndChekIn.js';
+import FormLoginAndCheckIn from './../blocks/FormLoginAndCheckIn.js';
+import ModalWindow from "../blocks/ModalWindow";
 
 class CheckIn extends React.Component {
 	constructor(props) {
@@ -9,8 +10,9 @@ class CheckIn extends React.Component {
 	render() {
 		return (
 			<div className="wrapper">
+				<ModalWindow page={"check-in"} nameClass={"modal-window modal-window__success-check-in"}></ModalWindow>
 				<h1 className="title">Регистрация</h1>
-				<FormLoginAndChekIn link="/login" textLink="Войти в аккаунт" textButton="Зарегестироваться" account={false}/>
+				<FormLoginAndCheckIn link="/login" textLink="Войти в аккаунт" textButton="Зарегестироваться" account={false}/>
 			</div>
 		)
 	}

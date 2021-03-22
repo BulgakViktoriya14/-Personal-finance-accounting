@@ -4,10 +4,13 @@
 }
 
 .card {
+    display: flex;
+    flex-direction: column;
 	flex-basis: 20%;
     box-shadow: 2px 2px 6px #b7b7b7;
 	padding: 20px;    
 	margin: 15px 1%;
+    position: relative;
 
     &__title {
         font-size: 18px;
@@ -18,26 +21,77 @@
     &__category {
         font-size: 16px;
         font-weight: 300;
-        margin: 0 0 40px 0;
+        margin: 10px 0 20px 0;
+        font-family: 'Montserrat', sans-serif;
     }
 
     &__bottom {
-        margin: 0;
+        margin: auto 0 0 0;
         display: flex;
-        flex-basis: 100%;
         justify-content: space-between;
         align-items: baseline;
+        width: 100%;
     }
 
     &__sum {
         font-size: 18px;
         line-height: 18px;
         font-weight: bold;
-        color: #b90000;
+        color: $colorRed;
     }
     &__date {
         font-size: 14px;
         line-height: 14px;
-        color: #828282;
+        color: $colorGrey;
+    }
+
+    &__more-details {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        margin: 0 0 20px 0;
+        font-size: 12px;
+        line-height: 12px;
+        text-align: left;
+        outline: none;
+        cursor: pointer;
+        transition: 200ms ease-in;
+    }
+
+    &__description {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        position: absolute;
+        background-color: $colorRed;
+        top: 0;
+        left: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        color: #fff;
+        padding: 20px;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: bold;
+        z-index: -1;
+        opacity: 0;
+        transition: 200ms ease-in;
+
+        p {
+            margin: 0;
+        }
+
+        .card__more-details {
+            margin: auto 0 0 0;
+            color: $colorWhite;
+        }
+    }
+
+    &.open {
+        .card__description {
+            z-index: 1;
+            opacity: 1;
+        }
     }
 }

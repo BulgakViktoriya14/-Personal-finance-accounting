@@ -19,7 +19,7 @@
 
   &__block {
     width: 500px;
-    background-color: #fff;
+    background-color: $colorWhite;
     padding: 30px;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
     position: relative;
@@ -27,7 +27,7 @@
   }
 
   &__title {
-    color: #b90000;
+    color: $colorRed;
     font-size: 18px;
     line-height: 18px;
     text-align: center;
@@ -35,7 +35,7 @@
   }
 
   &__close {
-    background-color: #fff;
+    background-color: $colorWhite;
     border: none;
     width: 25px;
     height: 25px;
