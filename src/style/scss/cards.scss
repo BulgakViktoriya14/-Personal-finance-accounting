@@ -1,12 +1,17 @@
 .cards {
 	width: 102%;
     margin: 0 0 0 -1%;
+
+    @include breakpoint(mobile) {
+        width: 104%;
+        margin: 0 0 0 -2%;
+    }
 }
 
 .card {
     display: flex;
     flex-direction: column;
-	flex-basis: 20%;
+	flex-basis: 23%;
     box-shadow: 2px 2px 6px #b7b7b7;
 	padding: 20px;    
 	margin: 15px 1%;
@@ -20,6 +25,7 @@
 
     &__category {
         font-size: 16px;
+        line-height: 20px;
         font-weight: 300;
         margin: 10px 0 20px 0;
         font-family: 'Montserrat', sans-serif;
@@ -53,7 +59,6 @@
         font-size: 12px;
         line-height: 12px;
         text-align: left;
-        outline: none;
         cursor: pointer;
         transition: 200ms ease-in;
     }
@@ -69,7 +74,7 @@
         margin: 0;
         height: 100%;
         width: 100%;
-        color: #fff;
+        color: $colorWhite;
         padding: 20px;
         font-size: 14px;
         line-height: 20px;
@@ -90,6 +95,66 @@
 
     &.open {
         .card__description {
+            z-index: 1;
+            opacity: 1;
+        }
+    }
+
+    @include breakpoint(mobile) {
+        flex-basis: 46%;
+        margin: 7px 2%;
+        padding: 10px;
+
+        &__title {
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        &__category {
+            font-size: 12px;
+        }
+
+        &__sum {
+            font-size: 14px;
+            line-height: 14px;
+        }
+
+        &__date {
+            font-size: 12px;
+            line-height: 12px;
+        }
+
+        &__more-details {
+            font-size: 10px;
+            line-height: 10px;
+        }
+    }
+}
+
+.button-open-popup-add-card {
+   @include buttonMobileOpen();
+    background-image: url("../../images/plus.svg");
+    top: 110px;
+}
+
+@include breakpoint(mobile) {
+    .creation-card {
+        position: fixed;
+        top: 110px;
+        left: 0;
+        height: calc(100vh - 60px);
+        background-color: $colorWhite;
+        z-index: -1;
+        opacity: 0;
+        transition: 200ms;
+        padding: 30px;
+        width: 100%;
+
+        .subtitle {
+            margin: 0;
+        }
+
+        &.creation-card_open {
             z-index: 1;
             opacity: 1;
         }

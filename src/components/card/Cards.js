@@ -7,13 +7,22 @@ class Cards extends React.Component {
             arrayCards: []
         }
     }
-
-    componentDidMount() {
+    createList = () => {
         let arrayCards = [];
         for(let card in this.props.cards) {
             arrayCards.push(this.props.cards[card]);
         }
         this.setState({arrayCards: arrayCards})
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.cards !== prevProps.cards) {
+            this.createList();
+        }
+    }
+
+    componentDidMount() {
+        this.createList();
     }
 
     openMoreDetails = (e) => {
@@ -27,7 +36,7 @@ class Cards extends React.Component {
     render() {
 		return (
             <div className="container cards">
-                {this.state.arrayCards.map((item) =>
+                {this.state.arrayCards.reverse().map((item) =>
                     <article className="card">
                         <h3 className="card__title">{item.title}</h3>
                         <h4 className="card__category">{item.category}</h4>

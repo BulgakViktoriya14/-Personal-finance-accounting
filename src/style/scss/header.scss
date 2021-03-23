@@ -54,4 +54,24 @@
 	.logo {
 		flex-basis: 250px;
 	}
+
+	@include breakpoint(mobile) {
+		padding: 10px;
+		height: 60px;
+
+		.logo {
+			flex-basis: 140px;
+		}
+
+		&__photo {
+			width: 40px;
+			height: 40px;
+			margin: 0 0 0 10px;
+		}
+
+		&__name a {
+			font-size: 12px;
+			line-height: 12px;
+		}
+	}
 }

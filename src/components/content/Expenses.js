@@ -7,9 +7,10 @@ class Expenses extends React.Component {
 	render() {
 		return (
 			<div className="wrapper">
+				<button className="button-open-popup-add-card"></button>
 				<h1 className="title">Расходы</h1>
 				<CreationCard type="expenses"/>
-				<h2 className="subtitle">Ваши карточки расходов</h2>
+				<h2 className="subtitle">Ваши карточки расходов:</h2>
 				<Cards cards={this.props.cardsExpenses}/>
 			</div>
 			)

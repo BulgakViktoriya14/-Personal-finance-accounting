@@ -3,6 +3,27 @@
     flex-direction: column;
 	flex-basis: 20%;
     border-right: 2px solid $colorBlack;
+
+	@include breakpoint(tablet) {
+		position: fixed;
+		left: 0;
+		top: 110px;
+		width: 100%;
+		height: calc(100vh - 110px);
+		background-color: $colorWhite;
+		transition: 200ms;
+		opacity: 0;
+		z-index: -1;
+
+		&.sidebar_open {
+			z-index: 1;
+			opacity: 1;
+		}
+	}
+
+	@include breakpoint(mobile) {
+		height: calc(100vh - 60px);
+	}
 }
 
 .menu {
@@ -50,4 +71,11 @@
     	line-height: 22px;
 		font-family: 'Montserrat-SemiBold', sans-serif;
 	}
+}
+
+
+.button-open-sidebar {
+	@include buttonMobileOpen();
+	background-image: url("../../images/burger.svg");
+	top: 70px;
 }

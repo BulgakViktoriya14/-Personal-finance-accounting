@@ -6,14 +6,29 @@
   padding: 10px 15px;
   border: 2px solid $colorRed;
   transition: 200ms;
-  cursor: pointer;
   font-weight: bold;
-  outline: none;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3%);
 
   &:hover,
   &:active {
     background-color: $colorRed;
     color: $colorWhite;
+  }
+}
+
+@mixin buttonMobileOpen {
+  display: none;
+  position: fixed;
+  left: 0;
+  border: none;
+  background-color: $colorBlack;
+  width: 40px;
+  height: 30px;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @include breakpoint(mobile) {
+    display: block;
   }
 }

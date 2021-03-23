@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import firebase from "firebase";
 import {setUserExpensesCardsAction} from "../../actions/actionUserExpensesCards.js";
 import {setUserIncomeCardsAction} from "../../actions/actionUserIncomeCards.js";
+import {setUserSumAction} from "../../actions/actionSumUser";
 
 class CreationCard extends React.Component {
 	constructor(props) {
@@ -51,13 +52,44 @@ class CreationCard extends React.Component {
 		let card = this.createCard();
 
 		if(this.props.type === "income") {
-			firebase.database().ref('/users/user' + _this.props.userId + '/cardsIncome/card' + Object.keys(_this.props.cardsIncome).length).set({
+			let newSum = Number(this.props.userSum) + Number(card.money);
+			let cards = this.props.cardsIncome;
+			let path;
+			if(cards) {
+				path = '/users/user' + _this.props.userId + '/cardsIncome/card' + Object.keys(cards).length;
+			} else {
+				path = '/users/user' + _this.props.userId + '/cardsIncome/card0';
+			}
+			firebase.database().ref(path).set({
 				category: card.category, date: card.date, money: card.money, title: card.title, description: card.description
 			})
+				.then(() => {document.querySelector(".form").reset();})
+				.then(() => {_this.props.setUserSumFunction(newSum)})
+				.then(() => {
+					firebase.database().ref('/users/user' + _this.props.userId).update({
+						money: newSum
+					})
+				})
+				.then(() => {})
 		} else {
-			firebase.database().ref('/users/user' + _this.props.userId + '/cardsExpenses/card' + Object.keys(_this.props.cardsExpenses).length).set({
+			let newSum = Number(this.props.userSum) - Number(card.money);
+			let cards = this.props.cardsExpenses;
+			let path;
+			if(cards) {
+				path = '/users/user' + _this.props.userId + '/cardsExpenses/card' + Object.keys(cards).length;
+			} else {
+				path = '/users/user' + _this.props.userId + '/cardsExpenses/card0';
+			}
+			firebase.database().ref(path).set({
 				category: card.category, date: card.date, money: card.money, title: card.title, description: card.description
 			})
+				.then(() => {document.querySelector(".form").reset();})
+				.then(() => {_this.props.setUserSumFunction(newSum)})
+				.then(() => {
+					firebase.database().ref('/users/user' + _this.props.userId).update({
+						money: newSum
+					})
+				})
 		}
 	}
 	  
@@ -80,7 +112,7 @@ class CreationCard extends React.Component {
     				</div>
 					<div className="form__item">
     					<label htmlFor="description" className="form__label">Описание<span className="form__notice">(30 символов)</span></label>
-    					<textarea maxLength="30" type="text" id="description" className="form__input"></textarea>
+    					<textarea maxLength="30" type="text" id="description" className="form__textarea"></textarea>
     				</div>
     				<input type="button" className="button-add-card" value="Добавить карточку" onClick={this.addCart}/>
 				</form>
@@ -93,7 +125,8 @@ function mapStateToProps(state) {
 	return {
 		cardsIncome: state.userInfo.cardsIncome,
 		cardsExpenses: state.userInfo.cardsExpenses,
-		userId: state.userInfo.idUser
+		userId: state.userInfo.idUser,
+		userSum: state.userInfo.userSum
 	}
 }
 
@@ -106,6 +139,10 @@ function matchDispatchToProps(dispatch) {
 
 		setUserExpensesCardsFunction: (cards) => {
 			dispatch(setUserExpensesCardsAction(cards))
+		},
+
+		setUserSumFunction: (sum) => {
+			dispatch(setUserSumAction(sum))
 		}
 	}
 }

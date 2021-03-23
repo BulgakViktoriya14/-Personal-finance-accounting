@@ -11,6 +11,7 @@ class ContentWrapper extends React.Component {
 	render() {
 		return (
 			<section className="content">
+				<button className="button-open-sidebar"></button>
 				<Sidebar/>
 				<Switch>
 					<Route path="/check-in" component={CheckIn}/>
