@@ -18,7 +18,6 @@ class Profile extends React.Component {
 		this.state = {
 			flag: true,
 			idUser: '',
-			flagCategory: false
 		}
 	}
 
@@ -144,10 +143,6 @@ class Profile extends React.Component {
 					}
 					<button type="button" onClick={this.openModalWindowChangePassword} className="button-change-password">Change password</button>
 					<button type="button" onClick={this.openModalWindowChangeAvatar} className="button-change-avatar">Change avatar</button>
-					<button type="button" onClick={this.enableOrDisableCategories}className="button-category">
-						{this.state.flagCategory && "Disable categories"}
-						{!this.state.flagCategory && "Include categories"}
-					</button>
 					<button type="button" onClick={this.logout} className="button-logout">Log out</button>
 					<button type="button" onClick={this.deleteProfile} className="button-delete-profile">Delete profile</button>
 				</div>
