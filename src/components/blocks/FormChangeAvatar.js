@@ -11,21 +11,28 @@ class FormChangeAvatar extends React.Component {
         let file = document.querySelector("input[type='file']").files[0];
         let _this = this;
         if(file) {
-            firebase.storage().ref("/avatars").child(_this.props.idUser.toString()).put(file);
-            // document.querySelector(".modal-window.open .modal-window__close").click();
-            document.querySelector(".form-change-avatar").reset();
+            firebase.storage().ref("/avatars").child(_this.props.idUser).put(file)
+                .then(function(result) {
+                    window.location.reload();
+                });
+        }
+    }
+
+    uploadFile = (e) => {
+        if(e.target.value) {
+            e.target.parentElement.querySelector(".form__label").classList.add("upload-file");
         }
     }
 
     render() {
         return (
             <form className="form form-change-avatar">
-                <div className="form__item">
-                    <label htmlFor="money" className="form__label">Выберите файл</label>
-                    <input type="file" id="file" name="file" className="form__input"/>
+                <div className="form__wrapper-file">
+                    <label htmlFor="money" className="form__label">Select a file</label>
+                    <input type="file" id="file" name="file" className="form__input" onChange={this.uploadFile}/>
                 </div>
                 <button className="form__submit" name="submit"
-                        onClick={this.saveNewAvatar}>Сохранить фото</button>
+                        onClick={this.saveNewAvatar}>Save photo</button>
             </form>
         )
     }

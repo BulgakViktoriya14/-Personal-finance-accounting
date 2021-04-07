@@ -11,8 +11,8 @@ class CheckIn extends React.Component {
 		return (
 			<div className="wrapper">
 				<ModalWindow page={"check-in"} nameClass={"modal-window modal-window__success-check-in"}></ModalWindow>
-				<h1 className="title">Регистрация</h1>
-				<FormLoginAndCheckIn link="/login" textLink="Войти в аккаунт" textButton="Зарегестироваться" account={false}/>
+				<h1 className="title">Registration</h1>
+				<FormLoginAndCheckIn link="/login" textLink="Sign in to your account" textButton="Register" account={false}/>
 			</div>
 		)
 	}

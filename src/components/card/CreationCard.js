@@ -4,10 +4,16 @@ import firebase from "firebase";
 import {setUserExpensesCardsAction} from "../../actions/actionUserExpensesCards.js";
 import {setUserIncomeCardsAction} from "../../actions/actionUserIncomeCards.js";
 import {setUserSumAction} from "../../actions/actionSumUser";
+import close from "../../images/close.svg";
+import { v4 as uuidv4 } from 'uuid';
+import {validateEmptyField} from "../../functions/validateEmptyField.js";
 
 class CreationCard extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			errorText: ''
+		}
 	}
 
 	getDate = () => {
@@ -45,21 +51,31 @@ class CreationCard extends React.Component {
 		return true;
 	}
 
+	closePopupCreationCard = () => {
+		document.querySelector(".creation-card").classList.remove("creation-card_open");
+	}
+
 	addCart = () => {
-		if(!this.checkFields()) return;
+		let arrayRequiredFields = document.querySelectorAll('input[required]');
+		let arrayRequiredFieldsValues = [];
+		arrayRequiredFields.forEach(function (elem) {
+			arrayRequiredFieldsValues.push(elem.value);
+		})
+		if(!validateEmptyField(arrayRequiredFieldsValues)) {
+			this.setState({errorText: "You did not fill in the required fields"});
+			return;
+		} else {
+			this.setState({errorText: ''});
+		}
+		// if(!this.checkFields()) return;
 
 		let _this = this;
 		let card = this.createCard();
 
 		if(this.props.type === "income") {
 			let newSum = Number(this.props.userSum) + Number(card.money);
-			let cards = this.props.cardsIncome;
-			let path;
-			if(cards) {
-				path = '/users/user' + _this.props.userId + '/cardsIncome/card' + Object.keys(cards).length;
-			} else {
-				path = '/users/user' + _this.props.userId + '/cardsIncome/card0';
-			}
+			let id = uuidv4();
+			let path = '/users/user' + _this.props.userId + '/cardsIncome/card' + id;
 			firebase.database().ref(path).set({
 				category: card.category, date: card.date, money: card.money, title: card.title, description: card.description
 			})
@@ -73,13 +89,8 @@ class CreationCard extends React.Component {
 				.then(() => {})
 		} else {
 			let newSum = Number(this.props.userSum) - Number(card.money);
-			let cards = this.props.cardsExpenses;
-			let path;
-			if(cards) {
-				path = '/users/user' + _this.props.userId + '/cardsExpenses/card' + Object.keys(cards).length;
-			} else {
-				path = '/users/user' + _this.props.userId + '/cardsExpenses/card0';
-			}
+			let id = uuidv4();
+			let path = '/users/user' + _this.props.userId + '/cardsExpenses/card' + id;
 			firebase.database().ref(path).set({
 				category: card.category, date: card.date, money: card.money, title: card.title, description: card.description
 			})
@@ -96,26 +107,30 @@ class CreationCard extends React.Component {
 	render() {
 		return (
 			<div className="creation-card">
-				<h2 className="subtitle">Создать карточку</h2>
+				<button className="close" onClick={this.closePopupCreationCard}><img src={close} alt="close"/></button>
+				<h2 className="subtitle">Create card</h2>
 				<form className="form form-add-card">
 					<div className="form__item">
-    					<label htmlFor="name" className="form__label">Название</label>
-    					<input type="text" id="name" className="form__input"/>
+    					<label htmlFor="name" className="form__label">Title</label>
+    					<input type="text" id="name" className="form__input" required="required"/>
     				</div>
 					<div className="form__item">
-    					<label htmlFor="category" className="form__label">Категория</label>
+    					<label htmlFor="category" className="form__label">Category</label>
     					<input type="text" id="category" className="form__input"/>
     				</div>
     				<div className="form__item">
-    					<label htmlFor="sum" className="form__label">Сумма</label>
-    					<input type="number" id="sum" className="form__input"/>
+    					<label htmlFor="sum" className="form__label">Amount</label>
+    					<input type="number" id="sum" className="form__input" required="required"/>
     				</div>
 					<div className="form__item">
-    					<label htmlFor="description" className="form__label">Описание<span className="form__notice">(30 символов)</span></label>
+    					<label htmlFor="description" className="form__label">Description<span className="form__notice">(30 characters)</span></label>
     					<textarea maxLength="30" type="text" id="description" className="form__textarea"></textarea>
     				</div>
-    				<input type="button" className="button-add-card" value="Добавить карточку" onClick={this.addCart}/>
+    				<input type="button" className="button-add-card" value="Add card" onClick={this.addCart}/>
 				</form>
+				{this.state.errorText &&
+					<p className="massage-error">{this.state.errorText}</p>
+				}
 			</div>
 		)
 	}

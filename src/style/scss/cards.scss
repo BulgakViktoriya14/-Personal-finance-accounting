@@ -39,6 +39,16 @@
         width: 100%;
     }
 
+    &__button-delete {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        background-color: $colorRed;
+        border: none;
+    }
+
     &__sum {
         font-size: 18px;
         line-height: 18px;
@@ -135,12 +145,41 @@
    @include buttonMobileOpen();
     background-image: url("../../images/plus.svg");
     top: 110px;
+
+    @include breakpoint(mobile) {
+        display: block;
+    }
+}
+
+.button-delete-card {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    background-image: url("../../images/delete.svg");
+    background-size: 70% 70%;
+    height: 60px;
+    width: 60px;
+    border: none;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    @include breakpoint(mobile) {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+.creation-card {
+    .close {
+        display: none;
+    }
 }
 
 @include breakpoint(mobile) {
     .creation-card {
         position: fixed;
-        top: 110px;
+        top: 60px;
         left: 0;
         height: calc(100vh - 60px);
         background-color: $colorWhite;
@@ -157,6 +196,10 @@
         &.creation-card_open {
             z-index: 1;
             opacity: 1;
+        }
+
+        .close {
+            display: block;
         }
     }
 }

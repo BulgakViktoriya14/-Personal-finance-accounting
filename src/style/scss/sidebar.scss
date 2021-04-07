@@ -4,6 +4,10 @@
 	flex-basis: 20%;
     border-right: 2px solid $colorBlack;
 
+	.close {
+		display: none;
+	}
+
 	@include breakpoint(tablet) {
 		position: fixed;
 		left: 0;
@@ -14,25 +18,39 @@
 		transition: 200ms;
 		opacity: 0;
 		z-index: -1;
+		border-right: none;
 
 		&.sidebar_open {
 			z-index: 1;
 			opacity: 1;
 		}
+
+		.close {
+			display: block;
+		}
 	}
 
 	@include breakpoint(mobile) {
 		height: calc(100vh - 60px);
+		top: 60px;
 	}
 }
 
 .menu {
 	&-list {
     	padding: 0 60px 20px 60px;
+
+		@include breakpoint(tablet) {
+			padding: 20px 30px;
+		}
    	}
 
     &-item {
 		margin: 30px 0;
+
+		@include breakpoint(tablet) {
+			margin: 20px 0;
+		}
 	}
 
 	&-link {
@@ -48,6 +66,11 @@
 				background-color: $colorRed;
 			}
 		}
+
+		@include breakpoint(mobile) {
+			font-size: 24px;
+			line-height: 28px;
+		}
 	}
 }
 
@@ -57,7 +80,7 @@
     align-items: center;
 	margin: auto 0 0 0;
     background-color: $colorBlack;
-    padding: 30px 20px;
+    padding: 30px 10px;
     color: $colorWhite;
 
 
@@ -67,9 +90,23 @@
 	}
 
 	&_sum {
-		font-size: 22px;
-    	line-height: 22px;
+		font-size: 20px;
+    	line-height: 20px;
 		font-family: 'Montserrat-SemiBold', sans-serif;
+	}
+
+	@include breakpoint(mobile) {
+		padding: 20px;
+
+		&_title {
+			font-size: 16px;
+			line-height: 16px;
+		}
+
+		&_sum {
+			font-size: 20px;
+			line-height: 20px;
+		}
 	}
 }
 
@@ -77,5 +114,13 @@
 .button-open-sidebar {
 	@include buttonMobileOpen();
 	background-image: url("../../images/burger.svg");
-	top: 70px;
+	top: 130px;
+
+	@include breakpoint(tablet) {
+		display: block;
+	}
+
+	@include breakpoint(mobile) {
+		top: 70px;
+	}
 }
