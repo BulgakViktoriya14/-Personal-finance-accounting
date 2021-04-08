@@ -1,5 +1,5 @@
 const initialState =  {
-        idUser: 0,
+        idUser: '',
         userEmail: "",
         userName: "",
         userSum: 0,

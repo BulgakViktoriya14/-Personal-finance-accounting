@@ -21,6 +21,20 @@ class Profile extends React.Component {
 		}
 	}
 
+	getAvatar = (userId) => {
+		let _this = this;
+		firebase.storage().ref("/avatars").listAll().then(function (result) {
+			result.items.forEach(function (image) {
+				if (image.name == userId) {
+					image.getDownloadURL().then(function (url) {
+						_this.props.setUserAvatarFunction(url);
+					})
+					return;
+				}
+			});
+		})
+	}
+
 	componentDidMount() {
 		const db = firebase.database();
 		let _this = this;
@@ -32,28 +46,17 @@ class Profile extends React.Component {
 					let objectUsers = snap.val();
 					for (let key in objectUsers) {
 						if (currentEmail === objectUsers[key].email) {
-							_this.setState({idUser: key});
+							_this.setState({idUser: objectUsers[key].id});
 							_this.props.setUserIdFunction(objectUsers[key].id);
 							_this.props.setUserNameFunction(objectUsers[key].name);
 							_this.props.setUserEmailFunction(objectUsers[key].email);
 							_this.props.setUserSumFunction(objectUsers[key].money);
 							_this.props.setUserIncomeCardsFunction(objectUsers[key].cardsIncome);
 							_this.props.setUserExpensesCardsFunction(objectUsers[key].cardsExpenses);
+							_this.getAvatar(_this.state.idUser);
 						}
 					}
 				})
-
-				firebase.storage().ref("/avatars").listAll().then(function(result) {
-					result.items.forEach(function(image) {
-						console.log(image.name, _this.props.userId)
-						if(image.name == _this.props.userId)  {
-							image.getDownloadURL().then(function(url) {
-								_this.props.setUserAvatarFunction(url);
-							})
-							return;
-						}
-					});
-				}).catch(function(error) {console.log(error)});
 			}
 		})
 	}
@@ -93,10 +96,6 @@ class Profile extends React.Component {
 
 	openModalWindowChangeAvatar = () => {
 		document.querySelector(".modal-window.modal-window__change-avatar").classList.add("open");
-	}
-
-	enableOrDisableCategories = () => {
-		this.setState({flagCategory: !this.state.flagCategory});
 	}
 
 	handleChange = (e) => {

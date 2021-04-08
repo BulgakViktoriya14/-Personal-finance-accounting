@@ -43,9 +43,9 @@ class CreationCard extends React.Component {
 			description: description
 		}
 	}
-	checkFields = () => {
-		if(this.props.type === "expenses" && Number(document.querySelector("#sum").value) >= Number(this.props.sum)) {
-			console.log("Ваш баланс не позвоялет выполнить данную операцию");
+	checkResultAccount = (value) => {
+		if(this.props.type === "expenses" && Number(value) > Number(this.props.userSum)) {
+			this.setState({errorText: "Your balance does not allow the operation"});
 			return false;
 		}
 		return true;
@@ -67,7 +67,7 @@ class CreationCard extends React.Component {
 		} else {
 			this.setState({errorText: ''});
 		}
-		// if(!this.checkFields()) return;
+		if(!this.checkResultAccount(document.querySelector("#sum").value)) return;
 
 		let _this = this;
 		let card = this.createCard();
@@ -77,7 +77,7 @@ class CreationCard extends React.Component {
 			let id = uuidv4();
 			let path = '/users/user' + _this.props.userId + '/cardsIncome/card' + id;
 			firebase.database().ref(path).set({
-				category: card.category, date: card.date, money: card.money, title: card.title, description: card.description
+				id: id, category: card.category, date: card.date, money: card.money, title: card.title, description: card.description
 			})
 				.then(() => {document.querySelector(".form").reset();})
 				.then(() => {_this.props.setUserSumFunction(newSum)})
@@ -92,7 +92,7 @@ class CreationCard extends React.Component {
 			let id = uuidv4();
 			let path = '/users/user' + _this.props.userId + '/cardsExpenses/card' + id;
 			firebase.database().ref(path).set({
-				category: card.category, date: card.date, money: card.money, title: card.title, description: card.description
+				id: id, category: card.category, date: card.date, money: card.money, title: card.title, description: card.description
 			})
 				.then(() => {document.querySelector(".form").reset();})
 				.then(() => {_this.props.setUserSumFunction(newSum)})
@@ -111,7 +111,7 @@ class CreationCard extends React.Component {
 				<h2 className="subtitle">Create card</h2>
 				<form className="form form-add-card">
 					<div className="form__item">
-    					<label htmlFor="name" className="form__label">Title</label>
+    					<label htmlFor="name" className="form__label required">Title</label>
     					<input type="text" id="name" className="form__input" required="required"/>
     				</div>
 					<div className="form__item">
@@ -119,7 +119,7 @@ class CreationCard extends React.Component {
     					<input type="text" id="category" className="form__input"/>
     				</div>
     				<div className="form__item">
-    					<label htmlFor="sum" className="form__label">Amount</label>
+    					<label htmlFor="sum" className="form__label required">Amount</label>
     					<input type="number" id="sum" className="form__input" required="required"/>
     				</div>
 					<div className="form__item">
@@ -144,7 +144,6 @@ function mapStateToProps(state) {
 		userSum: state.userInfo.userSum
 	}
 }
-
 
 function matchDispatchToProps(dispatch) {
 	return {

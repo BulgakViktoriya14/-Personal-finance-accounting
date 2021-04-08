@@ -6,6 +6,17 @@ import ButtonOpenPopupAddCard from "../blocks/ButtonOpenPopupAddCard";
 import ButtonDeleteCard from "../blocks/ButtonDeleteCards";
 
 class Income extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			flagDeleteCard: false
+		}
+	}
+
+	changeFlagDeleteCard = () => {
+		this.setState({flagDeleteCard: !this.state.flagDeleteCard});
+	}
+
 	render() {
 		return (
 			<div className="wrapper">
@@ -13,8 +24,8 @@ class Income extends React.Component {
 				<h1 className="title">Income</h1>
 				<CreationCard type="income"/>
 				<h2 className="subtitle">Your income cards:</h2>
-				<Cards cards={this.props.cardsIncome}/>
-				<ButtonDeleteCard></ButtonDeleteCard>
+				<Cards flagDeleteCard={this.state.flagDeleteCard} cards={this.props.cardsIncome} type={"cardsIncome"}/>
+				<ButtonDeleteCard changeFlagDeleteCard={this.changeFlagDeleteCard}></ButtonDeleteCard>
 			</div>
 		)
 	}

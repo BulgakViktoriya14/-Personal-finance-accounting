@@ -52,8 +52,7 @@ class ModalWindow extends React.Component {
                             <img src={close} alt="icon close"/>
                         </button>
                         <h4 className="modal-window__title">Change password</h4>
-                        <FormSetNewPassword functionCloseWindow={this.closeModalWindowAfterChangePassword}
-                                            openSuccessResult={this.openSuccessResult} flagChangePassword={this.state.flagChangePassword}></FormSetNewPassword>
+                        <FormSetNewPassword functionCloseWindow={this.closeModalWindowAfterChangePassword}></FormSetNewPassword>
                     </div>
                     }
                     {this.props.page === "profile-password" &&

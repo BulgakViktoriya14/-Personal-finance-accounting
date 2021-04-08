@@ -6,6 +6,18 @@
         width: 104%;
         margin: 0 0 0 -2%;
     }
+
+    &-container-empty {
+        margin: 20px 10px;
+        font-size: 20px;
+        line-height: 24px;
+        color: $colorGrey;
+
+        @include breakpoint(mobile) {
+            font-size: 16px;
+            line-height: 20px;
+        }
+    }
 }
 
 .card {
@@ -47,6 +59,18 @@
         height: 20px;
         background-color: $colorRed;
         border: none;
+        background-image: url("../../images/delete.svg");
+        background-size: 67%;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0;
+        z-index: -1;
+        transition: 100ms;
+
+        &.visible {
+            opacity: 1;
+            z-index: 1;
+        }
     }
 
     &__sum {
@@ -105,7 +129,7 @@
 
     &.open {
         .card__description {
-            z-index: 1;
+            z-index: 2;
             opacity: 1;
         }
     }
@@ -194,7 +218,7 @@
         }
 
         &.creation-card_open {
-            z-index: 1;
+            z-index: 2;
             opacity: 1;
         }
 
