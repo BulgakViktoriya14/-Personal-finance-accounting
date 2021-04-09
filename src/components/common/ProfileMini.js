@@ -18,10 +18,14 @@ class ProfileMini extends React.Component {
 		return (
 			<div className={ this.props.userName ? 'header__profile' : 'header__profile_hidden' }>
 				<h3 className="header__name" >
-					<NavLink exact to="/profile" onClick={this.closeSidebar}>{this.props.userName}</NavLink>
+					<NavLink exact to="/profile" onClick={this.closeSidebar}>
+						{this.props.userName}
+					</NavLink>
 				</h3>
 				<div className="header__photo wrapper-img">
-					<NavLink exact to="/profile" onClick={this.closeSidebar}><img src={this.props.userAvatar ? this.props.userAvatar : photo} alt="photo"/></NavLink>
+					<NavLink exact to="/profile" onClick={this.closeSidebar}>
+						<img src={this.props.userAvatar ? this.props.userAvatar : photo} alt="photo"/>
+					</NavLink>
 				</div>
 			</div>
 		)
@@ -35,4 +39,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps)(ProfileMini);
+export default connect(mapStateToProps, null)(ProfileMini);

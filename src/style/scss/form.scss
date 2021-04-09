@@ -111,6 +111,13 @@
             opacity: 0;
             cursor: pointer;
         }
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active  {
+            -webkit-box-shadow: 0 0 0 15px $colorWhite inset !important;
+        }
     }
 
     &__wrapper-buttons {
@@ -193,6 +200,7 @@
     &-add-card {
         justify-content: space-between;
         flex-basis: 100%;
+        flex-wrap: wrap;
 
         .form__item {
             flex-basis: 19%;

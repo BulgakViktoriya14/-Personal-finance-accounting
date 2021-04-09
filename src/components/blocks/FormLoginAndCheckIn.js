@@ -2,8 +2,8 @@ import React from 'react';
 import firebase from 'firebase';
 import {NavLink} from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import {validateEmptyField} from "../../functions/validateEmptyField.js";
-import {validateLengthField} from "../../functions/validateLengthField.js";
+import {validateEmptyField} from "../../functions/validateEmptyField";
+import {validateLengthField} from "../../functions/validateLengthField";
 
 class FormLoginAndCheckIn extends React.Component {
 	constructor(props) {
@@ -81,16 +81,16 @@ class FormLoginAndCheckIn extends React.Component {
 			<form className="form form-login-checkin">
 				{!this.props.account &&
 					<div className="form__item">
-						<label htmlFor="name" className="form__label">Your name</label>
+						<label htmlFor="name" className="form__label required">Your name</label>
 						<input type="text" id="name" className="form__input" name="name-user" required="required" onChange={this.handleChange}/>
 					</div>
 				}
 				<div className="form__item">
-					<label htmlFor="email" className="form__label">E-mail</label>
+					<label htmlFor="email" className="form__label required">E-mail</label>
 				    <input type="email" id="email" name="email" className="form__input" required="required" onChange={this.handleChange}/>
 				</div>
 			    <div className="form__item">
-			    	<label htmlFor="password" className="form__label">Password</label>
+			    	<label htmlFor="password" className="form__label required">Password</label>
 			        <input type="password" id="password" className="form__input" name="password" required="required" onChange={this.handleChange}/>
 					<button className="button-visible-password" onClick={this.doVisibleOrHiddenPassword}></button>
 			    </div>

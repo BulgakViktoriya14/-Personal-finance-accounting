@@ -1,18 +1,14 @@
 import React from 'react';
 import {Switch, Route} from "react-router-dom";
-import Income from './../content/Income.js';
-import Expenses from './../content/Expenses.js';
-import Login from './../content/Login.js';
-import CheckIn from './../content/CheckIn.js'
-import Sidebar from './Sidebar.js';
-import Profile from './../content/Profile.js';
+import Income from './../content/Income';
+import Expenses from './../content/Expenses';
+import Login from './../content/Login';
+import CheckIn from './../content/CheckIn';
+import Sidebar from './Sidebar';
+import Profile from './../content/Profile';
 import {connect} from "react-redux";
 
 class ContentWrapper extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
 	openSidebar = () => {
 		document.querySelector(".sidebar").classList.add("sidebar_open");
 	}
@@ -21,7 +17,7 @@ class ContentWrapper extends React.Component {
 		return (
 			<section className="content">
 				{this.props.userName &&
-					<button className="button-open-sidebar" onClick={this.openSidebar}></button>
+					<button className="button-open-sidebar" onClick={this.openSidebar}/>
 				}
 				{this.props.userName &&
 					<Sidebar/>
@@ -44,4 +40,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps)(ContentWrapper);
+export default connect(mapStateToProps, null)(ContentWrapper);

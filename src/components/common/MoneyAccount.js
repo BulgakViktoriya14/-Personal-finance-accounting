@@ -8,7 +8,7 @@ class MoneyAccount extends React.Component {
 				<h3 className="money-account_title">On your account:</h3>
 				<span className="money-account_sum"><span className="number">{this.props.sum}</span> BYN.</span>
 			</div>
-			)
+		)
 	}
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import Logo from './Logo.js';
-import ProfileMini from './ProfileMini.js';
+import Logo from './Logo';
+import ProfileMini from './ProfileMini';
 
 class Header extends React.Component {
 	render() {
@@ -12,4 +12,5 @@ class Header extends React.Component {
 		)
 	}
 }
+
 export default Header;

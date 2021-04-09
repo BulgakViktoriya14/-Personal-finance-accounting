@@ -10,13 +10,6 @@ class Cards extends React.Component {
             arrayCards: []
         }
     }
-    createList = () => {
-        let arrayCards = [];
-        for(let card in this.props.cards) {
-            arrayCards.push(this.props.cards[card]);
-        }
-        this.setState({arrayCards: arrayCards})
-    }
 
     componentDidUpdate(prevProps) {
         if (this.props.cards !== prevProps.cards) {
@@ -26,6 +19,20 @@ class Cards extends React.Component {
 
     componentDidMount() {
         this.createList();
+    }
+
+    sortCard(array) {
+        array.sort((a, b) => a.startedAt > b.startedAt ? 1 : -1);
+    }
+
+    createList = () => {
+        let arrayCards = [];
+        for(let card in this.props.cards) {
+            arrayCards.push(this.props.cards[card]);
+            this.sortCard(arrayCards);
+        }
+        arrayCards.reverse();
+        this.setState({arrayCards: arrayCards});
     }
 
     openMoreDetails = (e) => {
@@ -64,9 +71,9 @@ class Cards extends React.Component {
                 {!this.state.arrayCards.length &&
                     <p className="cards-container-empty">You haven't created any cards yet.</p>
                 }
-                {this.state.arrayCards.reverse().map((item) =>
+                {this.state.arrayCards.map((item) =>
                     <article className="card" id={item.id} key={item.id}>
-                        <button className={`card__button-delete${this.props.flagDeleteCard ? " visible" : ""}`} onClick={this.deleteCard}></button>
+                        <button className={`card__button-delete${this.props.flagDeleteCard ? " visible" : ""}`} onClick={this.deleteCard}/>
                         <h3 className="card__title">{item.title}</h3>
                         <h4 className="card__category">{item.category}</h4>
                         {item.description &&
@@ -105,6 +112,5 @@ function matchDispatchToProps(dispatch) {
         }
     }
 }
-
 
 export default connect(mapStateToProps, matchDispatchToProps)(Cards);

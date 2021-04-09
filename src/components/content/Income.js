@@ -1,9 +1,9 @@
 import React from 'react';
-import CreationCard from './../card/CreationCard.js';
+import CreationCard from './../card/CreationCard';
 import {connect} from 'react-redux';
-import Cards from '../card/Cards.js';
-import ButtonOpenPopupAddCard from "../blocks/ButtonOpenPopupAddCard";
-import ButtonDeleteCard from "../blocks/ButtonDeleteCards";
+import Cards from '../card/Cards';
+import ButtonOpenPopupAddCard from "../buttons/ButtonOpenPopupAddCard";
+import ButtonDeleteCard from "../buttons/ButtonDeleteCards";
 
 class Income extends React.Component {
 	constructor(props) {
@@ -25,7 +25,7 @@ class Income extends React.Component {
 				<CreationCard type="income"/>
 				<h2 className="subtitle">Your income cards:</h2>
 				<Cards flagDeleteCard={this.state.flagDeleteCard} cards={this.props.cardsIncome} type={"cardsIncome"}/>
-				<ButtonDeleteCard changeFlagDeleteCard={this.changeFlagDeleteCard}></ButtonDeleteCard>
+				<ButtonDeleteCard changeFlagDeleteCard={this.changeFlagDeleteCard}/>
 			</div>
 		)
 	}

@@ -4,6 +4,10 @@ import firebase from 'firebase';
 class FormChangeAvatar extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            errorText: ""
+        }
     }
 
     saveNewAvatar = (e) => {
@@ -13,8 +17,11 @@ class FormChangeAvatar extends React.Component {
         if(file) {
             firebase.storage().ref("/avatars").child(`${_this.props.idUser}`).put(file)
                 .then(function(result) {
+                    _this.setState({errorText: ""});
                     window.location.reload();
                 });
+        } else {
+            this.setState({errorText: "You haven't selected a file"});
         }
     }
 
@@ -33,6 +40,9 @@ class FormChangeAvatar extends React.Component {
                 </div>
                 <button className="form__submit" name="submit"
                         onClick={this.saveNewAvatar}>Save photo</button>
+                {this.state.errorText &&
+                    <p className="massage-error">{this.state.errorText}</p>
+                }
             </form>
         )
     }

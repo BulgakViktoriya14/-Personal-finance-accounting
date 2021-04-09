@@ -7,7 +7,7 @@ class ButtonOpenPopupAddCard extends React.Component {
 
     render() {
         return (
-            <button className="button-open-popup-add-card" onClick={this.openPopupAddCard}></button>
+            <button className="button-open-popup-add-card" onClick={this.openPopupAddCard}/>
         )
     }
 }

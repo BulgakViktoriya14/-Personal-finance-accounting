@@ -2,13 +2,13 @@ import React from 'react';
 import photo from "../../images/profile.png";
 import firebase from 'firebase';
 import {connect} from "react-redux";
-import {setUserNameAction} from "../../actions/actionUserName.js";
-import {setUserEmailAction} from "../../actions/actionUserEmail.js";
-import {setUserSumAction} from "../../actions/actionSumUser.js";
-import {setUserIdAction} from "../../actions/actionIdUser.js";
-import {setUserAvatarAction} from "../../actions/actionUserAvatar.js";
-import {setUserIncomeCardsAction} from "../../actions/actionUserIncomeCards.js";
-import {setUserExpensesCardsAction} from "../../actions/actionUserExpensesCards.js";
+import {setUserNameAction} from "../../actions/actionUserName";
+import {setUserEmailAction} from "../../actions/actionUserEmail";
+import {setUserSumAction} from "../../actions/actionSumUser";
+import {setUserIdAction} from "../../actions/actionIdUser";
+import {setUserAvatarAction} from "../../actions/actionUserAvatar";
+import {setUserIncomeCardsAction} from "../../actions/actionUserIncomeCards";
+import {setUserExpensesCardsAction} from "../../actions/actionUserExpensesCards";
 import ModalWindow from "../blocks/ModalWindow";
 import FormInfoProfile from "./../blocks/FormInfoProfile";
 
@@ -19,20 +19,6 @@ class Profile extends React.Component {
 			flag: true,
 			idUser: '',
 		}
-	}
-
-	getAvatar = (userId) => {
-		let _this = this;
-		firebase.storage().ref("/avatars").listAll().then(function (result) {
-			result.items.forEach(function (image) {
-				if (image.name == userId) {
-					image.getDownloadURL().then(function (url) {
-						_this.props.setUserAvatarFunction(url);
-					})
-					return;
-				}
-			});
-		})
 	}
 
 	componentDidMount() {
@@ -53,12 +39,26 @@ class Profile extends React.Component {
 							_this.props.setUserSumFunction(objectUsers[key].money);
 							_this.props.setUserIncomeCardsFunction(objectUsers[key].cardsIncome);
 							_this.props.setUserExpensesCardsFunction(objectUsers[key].cardsExpenses);
-							_this.getAvatar(_this.state.idUser);
+							_this.getAvatar(objectUsers[key].id);
 						}
 					}
 				})
 			}
 		})
+	}
+
+	getAvatar = (userId) => {
+		let _this = this;
+		firebase.storage().ref("/avatars").listAll()
+			.then(function (result) {
+				result.items.forEach(function (image) {
+					if (image.name === userId) {
+						image.getDownloadURL().then(function (url) {
+							_this.props.setUserAvatarFunction(url);
+						})
+					}
+				})
+			})
 	}
 
 	changeUserInfo = () => {
@@ -73,7 +73,7 @@ class Profile extends React.Component {
 			name: this.props.userName,
 			email: this.props.userEmail,
 			money: this.props.userSum
-		});
+		})
 
 		firebase.auth().currentUser.updateEmail(this.props.userEmail);
 	}
@@ -84,10 +84,6 @@ class Profile extends React.Component {
 		this.props.setUserSumFunction(0);
 		firebase.auth().signOut();
 		document.location.href = "/login"
-	}
-
-	openModalWindowChangePassword = () => {
-		document.querySelector(".modal-window.modal-window__change-password").classList.add("open");
 	}
 
 	openModalWindowChangePassword = () => {
@@ -124,14 +120,14 @@ class Profile extends React.Component {
 	render() {
 		return (
 			<div className="wrapper">
-				<ModalWindow page={"profile-password"} nameClass={"modal-window modal-window__change-password"}></ModalWindow>
-				<ModalWindow idUser={this.props.userId} page={"profile-avatar"} nameClass={"modal-window modal-window__change-avatar"}></ModalWindow>
+				<ModalWindow page={"profile-password"} nameClass={"modal-window modal-window__change-password"}/>
+				<ModalWindow idUser={this.props.userId} page={"profile-avatar"} nameClass={"modal-window modal-window__change-avatar"}/>
 				<h1 className="title">Profile</h1>
 				<div className="profile">
 					<div className="profile__image wrapper-img">
 						<img src={this.props.userAvatar ? this.props.userAvatar : photo} alt="photo"/>
 					</div>
-					<FormInfoProfile handleChange={this.handleChange} flag={this.state.flag} userName={this.props.userName} userEmail={this.props.userEmail}></FormInfoProfile>
+					<FormInfoProfile handleChange={this.handleChange} flag={this.state.flag} userName={this.props.userName} userEmail={this.props.userEmail}/>
 				</div>
 				<div className="profile__wrapper-buttons">
 					{this.state.flag &&

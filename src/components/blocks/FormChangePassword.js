@@ -44,14 +44,14 @@ class FormChangePassword extends React.Component {
                     <div className="form__item">
                         <label htmlFor="new-password" className="form__label">Enter a new password</label>
                         <input type="password" id="new-password" name="new-password" className="form__input"/>
-                        <button className="button-visible-password" onClick={this.doVisibleOrHiddenPassword}></button>
+                        <button className="button-visible-password" onClick={this.doVisibleOrHiddenPassword}/>
                     </div>
                 }
                 {!this.props.flagChangePassword &&
                     <div className="form__item">
                         <label htmlFor="repeat-password" className="form__label">Re-enter the new password</label>
                         <input type="password" id="repeat-password" name="repeat-password" className="form__input"/>
-                        <button className="button-visible-password" onClick={this.doVisibleOrHiddenPassword}></button>
+                        <button className="button-visible-password" onClick={this.doVisibleOrHiddenPassword}/>
                     </div>
                 }
                 {!this.props.flagChangePassword &&

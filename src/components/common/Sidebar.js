@@ -1,13 +1,9 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import MoneyAccount from './MoneyAccount.js';
+import MoneyAccount from './MoneyAccount';
 import close from './../../images/close.svg';
 
 class Sidebar extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
 	closeSidebar = () => {
 		document.querySelector(".sidebar").classList.remove("sidebar_open");
 	}

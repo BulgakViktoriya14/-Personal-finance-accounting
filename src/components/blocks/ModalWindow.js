@@ -8,7 +8,7 @@ class ModalWindow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            flagChangePassword: false
+            flagChangePassword: false,
         }
     }
 
@@ -52,7 +52,7 @@ class ModalWindow extends React.Component {
                             <img src={close} alt="icon close"/>
                         </button>
                         <h4 className="modal-window__title">Change password</h4>
-                        <FormSetNewPassword functionCloseWindow={this.closeModalWindowAfterChangePassword}></FormSetNewPassword>
+                        <FormSetNewPassword functionCloseWindow={this.closeModalWindowAfterChangePassword}/>
                     </div>
                     }
                     {this.props.page === "profile-password" &&
@@ -62,7 +62,7 @@ class ModalWindow extends React.Component {
                             </button>
                             <h4 className="modal-window__title">Change password</h4>
                             <FormChangePassword functionCloseWindow={this.closeModalWindowAfterChangePassword}
-                                                openSuccessResult={this.openSuccessResult} flagChangePassword={this.state.flagChangePassword}></FormChangePassword>
+                                                openSuccessResult={this.openSuccessResult} flagChangePassword={this.state.flagChangePassword}/>
                         </div>
                     }
                     {this.props.page === "profile-avatar" &&
@@ -71,7 +71,7 @@ class ModalWindow extends React.Component {
                                 <img src={close} alt="icon close"/>
                             </button>
                             <h4 className="modal-window__title">Change avatar</h4>
-                            <FormChangeAvatar idUser={this.props.idUser} ></FormChangeAvatar>
+                            <FormChangeAvatar idUser={this.props.idUser}/>
                         </div>
                     }
                     {this.props.page === "check-in" &&
