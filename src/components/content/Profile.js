@@ -11,6 +11,7 @@ import {setUserIncomeCardsAction} from "../../actions/actionUserIncomeCards";
 import {setUserExpensesCardsAction} from "../../actions/actionUserExpensesCards";
 import ModalWindow from "../blocks/ModalWindow";
 import FormInfoProfile from "./../blocks/FormInfoProfile";
+import ButtonProfile from "../buttons/ButtonProfile";
 
 class Profile extends React.Component {
 	constructor(props) {
@@ -71,8 +72,7 @@ class Profile extends React.Component {
 
 		db.ref('/users/user' + this.state.idUser).update({
 			name: this.props.userName,
-			email: this.props.userEmail,
-			money: this.props.userSum
+			email: this.props.userEmail
 		})
 
 		firebase.auth().currentUser.updateEmail(this.props.userEmail);
@@ -131,15 +131,15 @@ class Profile extends React.Component {
 				</div>
 				<div className="profile__wrapper-buttons">
 					{this.state.flag &&
-					<button type="button" onClick={this.changeUserInfo} className="button-edit-profile">Change information about yourself</button>
+						<ButtonProfile functionOnCLick={this.changeUserInfo} nameButton={"Change information about yourself"}/>
 					}
 					{!this.state.flag &&
-					<button type="button" onClick={this.saveUserInfo} className="button-edit-profile">Save</button>
+						<ButtonProfile functionOnCLick={this.saveUserInfo} nameButton={"Save"}/>
 					}
-					<button type="button" onClick={this.openModalWindowChangePassword} className="button-change-password">Change password</button>
-					<button type="button" onClick={this.openModalWindowChangeAvatar} className="button-change-avatar">Change avatar</button>
-					<button type="button" onClick={this.logout} className="button-logout">Log out</button>
-					<button type="button" onClick={this.deleteProfile} className="button-delete-profile">Delete profile</button>
+					<ButtonProfile functionOnCLick={this.openModalWindowChangePassword} nameButton={"Change password"}/>
+					<ButtonProfile functionOnCLick={this.openModalWindowChangeAvatar} nameButton={"Change avatar"}/>
+					<ButtonProfile functionOnCLick={this.logout} nameButton={"Log out"}/>
+					<ButtonProfile functionOnCLick={this.deleteProfile} nameButton={"Delete profile"}/>
 				</div>
 			</div>
 		)

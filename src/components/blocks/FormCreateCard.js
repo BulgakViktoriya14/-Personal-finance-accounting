@@ -4,6 +4,7 @@ import {v4 as uuidv4} from "uuid";
 import firebase from 'firebase';
 import {setUserSumAction} from "../../actions/actionSumUser";
 import {connect} from 'react-redux';
+import FieldFormWithoutValue from "../fields/FieldFormWithoutValue";
 
 class FormCreateCard extends React.Component {
     constructor(props) {
@@ -115,22 +116,10 @@ class FormCreateCard extends React.Component {
     render() {
         return (
             <form className="form form-add-card">
-                <div className="form__item">
-                    <label htmlFor="name" className="form__label required">Title</label>
-                    <input type="text" id="name" className="form__input" required="required"/>
-                </div>
-                <div className="form__item">
-                    <label htmlFor="category" className="form__label">Category</label>
-                    <input type="text" id="category" className="form__input"/>
-                </div>
-                <div className="form__item">
-                    <label htmlFor="sum" className="form__label required">Amount</label>
-                    <input type="number" id="sum" className="form__input" required="required"/>
-                </div>
-                <div className="form__item">
-                    <label htmlFor="description" className="form__label">Description<span className="form__notice">(30 characters)</span></label>
-                    <textarea maxLength="30" type="text" id="description" className="form__textarea"/>
-                </div>
+                <FieldFormWithoutValue required={true} label={"Title"} type={"text"} id={"name"} flagPasswordField={false}/>
+                <FieldFormWithoutValue label={"Category"} type={"text"} id={"category"} flagPasswordField={false}/>
+                <FieldFormWithoutValue required={true} label={"Amount"} type={"number"} id={"sum"} flagPasswordField={false}/>
+                <FieldFormWithoutValue label={"Description"} type={"text"} id={"description"} flagPasswordField={false}/>
                 <input type="button" className="button-add-card" value="Add card" onClick={this.addCart}/>
                 {this.state.errorText &&
                     <p className="massage-error">{this.state.errorText}</p>

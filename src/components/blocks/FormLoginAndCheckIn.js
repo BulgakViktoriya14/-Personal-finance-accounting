@@ -4,6 +4,8 @@ import {NavLink} from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import {validateEmptyField} from "../../functions/validateEmptyField";
 import {validateLengthField} from "../../functions/validateLengthField";
+import FieldFormWithoutValue from "../fields/FieldFormWithoutValue";
+import FieldFormWithValue from "../fields/FieldFormWithValue";
 
 class FormLoginAndCheckIn extends React.Component {
 	constructor(props) {
@@ -12,7 +14,7 @@ class FormLoginAndCheckIn extends React.Component {
 			email: '',
 			password: '',
 			name: '',
-			money: 0,
+			money: 1,
 			id: '',
 			errorText: ''
 		}
@@ -80,25 +82,12 @@ class FormLoginAndCheckIn extends React.Component {
 		return (
 			<form className="form form-login-checkin">
 				{!this.props.account &&
-					<div className="form__item">
-						<label htmlFor="name" className="form__label required">Your name</label>
-						<input type="text" id="name" className="form__input" name="name-user" required="required" onChange={this.handleChange}/>
-					</div>
+					<FieldFormWithoutValue label={"Your name"} id={"name"} type={"text"} required={true} functionOnChange={this.handleChange}/>
 				}
-				<div className="form__item">
-					<label htmlFor="email" className="form__label required">E-mail</label>
-				    <input type="email" id="email" name="email" className="form__input" required="required" onChange={this.handleChange}/>
-				</div>
-			    <div className="form__item">
-			    	<label htmlFor="password" className="form__label required">Password</label>
-			        <input type="password" id="password" className="form__input" name="password" required="required" onChange={this.handleChange}/>
-					<button className="button-visible-password" onClick={this.doVisibleOrHiddenPassword}></button>
-			    </div>
+				<FieldFormWithoutValue label={"E-mail"} id={"email"} type={"email"} required={true} functionOnChange={this.handleChange}/>
+				<FieldFormWithoutValue label={"Password"} id={"password"} type={"password"} required={true} functionOnChange={this.handleChange} flagPasswordField={true} showHidePassword={this.doVisibleOrHiddenPassword}/>
 				{!this.props.account &&
-				<div className="form__item">
-					<label htmlFor="name" className="form__label">Starting amount</label>
-					<input type="number" id="money" className="form__input" name="money" value={this.state.money} onChange={this.handleChange}/>
-				</div>
+					<FieldFormWithValue type={"number"} label={"Starting amount"} id={"money"} value={this.state.money} functionOnChange={this.handleChange}/>
 				}
 				<div className="form__wrapper-buttons">
 				    <input className="form__submit" type="button" name="submit" value={this.props.textButton} onClick={this.logIntoAccount}/>

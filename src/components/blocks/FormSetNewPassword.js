@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
+import FieldFormWithoutValue from "../fields/FieldFormWithoutValue";
 
 class FormSetNewPassword extends React.Component {
     constructor(props) {
@@ -25,10 +26,7 @@ class FormSetNewPassword extends React.Component {
         return (
             <form className="form form-set-password">
                 {!this.state.flagSendEmail &&
-                    <div className="form__item">
-                        <label htmlFor="email" className="form__label required">Your email</label>
-                        <input type="email" id="email-for-password" name="email" className="form__input" required="required"/>
-                    </div>
+                    <FieldFormWithoutValue label={"Your email"} id={"email-for-password"} type={"email"} required={true}/>
                 }
                 {!this.state.flagSendEmail &&
                     <button className="form__submit" name="submit"
