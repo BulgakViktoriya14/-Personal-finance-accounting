@@ -83,7 +83,7 @@ class Profile extends React.Component {
 		this.props.setUserEmailFunction("");
 		this.props.setUserSumFunction(0);
 		firebase.auth().signOut();
-		document.location.href = "/login"
+		this.props.history.push('/login');
 	}
 
 	openModalWindowChangePassword = () => {
@@ -111,7 +111,7 @@ class Profile extends React.Component {
 		let _this = this;
 		firebase.auth().currentUser.delete().then(function() {
 				firebase.database().ref('users/user' + _this.props.userId).remove()
-					.then(function () {document.location.href = "/check-in";})
+					.then(function () {this.props.history.push('/check-in')})
 					.catch(error => console.log(error.message));
 			}
 		)
@@ -121,7 +121,7 @@ class Profile extends React.Component {
 		return (
 			<div className="wrapper">
 				<ModalWindow page={"profile-password"} nameClass={"modal-window modal-window__change-password"}/>
-				<ModalWindow idUser={this.props.userId} page={"profile-avatar"} nameClass={"modal-window modal-window__change-avatar"}/>
+				<ModalWindow idUser={this.props.userId} page={"profile-avatar"} nameClass={"modal-window modal-window__change-avatar"} history={this.props.history}/>
 				<h1 className="title">Profile</h1>
 				<div className="profile">
 					<div className="profile__image wrapper-img">

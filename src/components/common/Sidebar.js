@@ -5,12 +5,12 @@ import close from './../../images/close.svg';
 
 class Sidebar extends React.Component {
 	closeSidebar = () => {
-		document.querySelector(".sidebar").classList.remove("sidebar_open");
+		this.props.blockSidebar.current.classList.remove("sidebar_open");
 	}
 
 	render() {
 		return (
-			<aside className="sidebar">
+			<aside className="sidebar" ref={this.props.blockSidebar}>
 				<nav className="menu">
 					<ul className="menu-list">
 						<button className="close" onClick={this.closeSidebar}><img src={close} alt="close"/></button>
@@ -28,4 +28,4 @@ class Sidebar extends React.Component {
 	}
 }
 
-export default Sidebar;
+export default React.forwardRef((props, ref) => <Sidebar blockSidebar={ref} {...props}/>);

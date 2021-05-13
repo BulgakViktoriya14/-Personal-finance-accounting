@@ -9,8 +9,14 @@ import Profile from './../content/Profile';
 import {connect} from "react-redux";
 
 class ContentWrapper extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.blockSidebar = React.createRef();
+	}
+
 	openSidebar = () => {
-		document.querySelector(".sidebar").classList.add("sidebar_open");
+		this.blockSidebar.current.classList.add("sidebar_open");
 	}
 
 	render() {
@@ -20,7 +26,7 @@ class ContentWrapper extends React.Component {
 					<button className="button-open-sidebar" onClick={this.openSidebar}/>
 				}
 				{this.props.userName &&
-					<Sidebar/>
+					<Sidebar ref={this.blockSidebar}/>
 				}
 				<Switch>
 					<Route path="/login" component={Login}/>

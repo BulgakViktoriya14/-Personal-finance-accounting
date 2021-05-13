@@ -8,17 +8,19 @@ class FormChangeAvatar extends React.Component {
         this.state = {
             errorText: ""
         }
+
+        this.labelInputFile = React.createRef();
     }
 
     saveNewAvatar = (e) => {
         e.preventDefault();
-        let file = document.querySelector("input[type='file']").files[0];
+        let file = this.props.inputFile.current.files[0];
         let _this = this;
         if(file) {
             firebase.storage().ref("/avatars").child(`${_this.props.idUser}`).put(file)
                 .then(function(result) {
                     _this.setState({errorText: ""});
-                    window.location.reload();
+                    _this.props.history.go(0);
                 });
         } else {
             this.setState({errorText: "You haven't selected a file"});
@@ -27,7 +29,7 @@ class FormChangeAvatar extends React.Component {
 
     uploadFile = (e) => {
         if(e.target.value) {
-            e.target.parentElement.querySelector(".form__label").classList.add("upload-file");
+            this.labelInputFile.current.classList.add("upload-file");
         }
     }
 
@@ -35,8 +37,8 @@ class FormChangeAvatar extends React.Component {
         return (
             <form className="form form-change-avatar">
                 <div className="form__wrapper-file">
-                    <label htmlFor="money" className="form__label">Select a file</label>
-                    <input type="file" id="file" name="file" className="form__input" onChange={this.uploadFile}/>
+                    <label htmlFor="money" className="form__label" ref={this.labelInputFile}>Select a file</label>
+                    <input type="file" id="file" name="file" className="form__input" onChange={this.uploadFile} ref={this.props.inputFile}/>
                 </div>
                 <button className="form__submit" name="submit"
                         onClick={this.saveNewAvatar}>Save photo</button>
@@ -48,4 +50,4 @@ class FormChangeAvatar extends React.Component {
     }
 }
 
-export default FormChangeAvatar;
+export default React.forwardRef((props, ref) => <FormChangeAvatar inputFile={ref} {...props}/>);

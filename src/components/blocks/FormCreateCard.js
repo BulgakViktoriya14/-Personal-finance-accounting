@@ -13,6 +13,12 @@ class FormCreateCard extends React.Component {
         this.state = {
             errorText: ''
         }
+
+        this.name = React.createRef();
+        this.sum = React.createRef();
+        this.category = React.createRef();
+        this.description = React.createRef();
+        this.form = React.createRef();
     }
 
     getDate = () => {
@@ -29,10 +35,10 @@ class FormCreateCard extends React.Component {
     }
 
     createCard = () => {
-        let sum = document.querySelector("#sum").value;
-        let category = document.querySelector("#category").value;
-        let name = document.querySelector("#name").value;
-        let description = document.querySelector("#description").value;
+        let sum =  this.sum.current.value;
+        let category = this.category.current.value;
+        let name = this.name.current.value;
+        let description = this.description.current.value;
         let date = this.getDate();
         return  {
             title: name,
@@ -50,6 +56,28 @@ class FormCreateCard extends React.Component {
         }
         return true;
     }
+
+    crateOneCard = (pathName, sum, card, _this) => {
+        let id = uuidv4();
+        let path = '/users/user' + _this.props.userId + '/' + pathName + '/card' + id;
+        firebase.database().ref(path).set({
+            startedAt: firebase.database.ServerValue.TIMESTAMP,
+            id: id,
+            category: card.category,
+            date: card.date,
+            money: card.money,
+            title: card.title,
+            description: card.description
+        })
+            .then(() => { _this.form.current.reset();})
+            .then(() => {_this.props.setUserSumFunction(sum)})
+            .then(() => {
+                firebase.database().ref('/users/user' + _this.props.userId).update({
+                    money: sum
+                })
+            })
+    }
+
 
     addCart = () => {
         let arrayRequiredFields = document.querySelectorAll('input[required]');
@@ -71,55 +99,20 @@ class FormCreateCard extends React.Component {
 
         if(this.props.type === "income") {
             let newSum = Number(this.props.userSum) + Number(card.money);
-            let id = uuidv4();
-            let path = '/users/user' + _this.props.userId + '/cardsIncome/card' + id;
-            firebase.database().ref(path).set({
-                startedAt: firebase.database.ServerValue.TIMESTAMP,
-                id: id,
-                category: card.category,
-                date: card.date,
-                money: card.money,
-                title: card.title,
-                description: card.description
-            })
-                .then(() => {document.querySelector(".form").reset();})
-                .then(() => {_this.props.setUserSumFunction(newSum)})
-                .then(() => {
-                    firebase.database().ref('/users/user' + _this.props.userId).update({
-                        money: newSum
-                    })
-                })
+            this.crateOneCard('cardsIncome', newSum, card, _this);
         } else {
             let newSum = Number(this.props.userSum) - Number(card.money);
-            let id = uuidv4();
-            let path = '/users/user' + _this.props.userId + '/cardsExpenses/card' + id;
-            firebase.database().ref(path).set({
-                startedAt: firebase.database.ServerValue.TIMESTAMP,
-                id: id,
-                category: card.category,
-                date: card.date,
-                money: card.money,
-                title: card.title,
-                description: card.description
-            })
-                .then(() => {document.querySelector(".form").reset();})
-                .then(() => {_this.props.setUserSumFunction(newSum)})
-                .then(() => {
-                    firebase.database().ref('/users/user' + _this.props.userId).update({
-                        money: newSum
-                    })
-                })
-                .catch(error => console.log(error))
+            this.crateOneCard('cardsExpenses', newSum, card, _this);
         }
     }
 
     render() {
         return (
-            <form className="form form-add-card">
-                <FieldFormWithoutValue required={true} label={"Title"} type={"text"} id={"name"} flagPasswordField={false}/>
-                <FieldFormWithoutValue label={"Category"} type={"text"} id={"category"} flagPasswordField={false}/>
-                <FieldFormWithoutValue required={true} label={"Amount"} type={"number"} id={"sum"} flagPasswordField={false}/>
-                <FieldFormWithoutValue label={"Description"} type={"text"} id={"description"} flagPasswordField={false}/>
+            <form className="form form-add-card" ref={this.form}>
+                <FieldFormWithoutValue ref={this.name} required={true} label={"Title"} type={"text"} id={"name"} flagPasswordField={false}/>
+                <FieldFormWithoutValue ref={this.category} label={"Category"} type={"text"} id={"category"} flagPasswordField={false}/>
+                <FieldFormWithoutValue ref={this.sum} required={true} label={"Amount"} type={"number"} id={"sum"} flagPasswordField={false}/>
+                <FieldFormWithoutValue ref={this.description} label={"Description"} type={"text"} id={"description"} flagPasswordField={false}/>
                 <input type="button" className="button-add-card" value="Add card" onClick={this.addCart}/>
                 {this.state.errorText &&
                     <p className="massage-error">{this.state.errorText}</p>

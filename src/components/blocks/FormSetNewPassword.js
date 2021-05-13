@@ -9,12 +9,14 @@ class FormSetNewPassword extends React.Component {
         this.state = {
             flagSendEmail: false
         }
+
+        this.email = React.createRef();
     }
 
     sendEmail = (e) => {
         e.preventDefault();
         let _this = this;
-        let email = document.querySelector("#email-for-password").value;
+        let email = this.email.current.value;
         firebase.auth().sendPasswordResetEmail(email)
             .then(function () {
                 _this.setState({flagSendEmail: !_this.state.flagSendEmail})
@@ -26,7 +28,7 @@ class FormSetNewPassword extends React.Component {
         return (
             <form className="form form-set-password">
                 {!this.state.flagSendEmail &&
-                    <FieldFormWithoutValue label={"Your email"} id={"email-for-password"} type={"email"} required={true}/>
+                    <FieldFormWithoutValue ref={this.email} label={"Your email"} id={"email-for-password"} type={"email"} required={true}/>
                 }
                 {!this.state.flagSendEmail &&
                     <button className="form__submit" name="submit"

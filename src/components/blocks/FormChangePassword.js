@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from 'firebase';
 import {validateEmptyField} from "../../functions/validateEmptyField";
 import FieldFormWithoutValue from "../fields/FieldFormWithoutValue";
+import {doVisibleOrHiddenPassword} from  "../../functions/doVisibleOrHiddenPassword";
 
 class FormChangePassword extends React.Component {
     constructor(props) {
@@ -10,12 +11,15 @@ class FormChangePassword extends React.Component {
         this.state = {
             errorText: ''
         }
+
+        this.newPassword = React.createRef();
+        this.repeatPassword = React.createRef();
     }
 
     changePassword = (e) => {
         e.preventDefault();
-        let newPassOne = document.querySelector("#new-password").value;
-        let newPassTwo = document.querySelector("#repeat-password").value;
+        let newPassOne = this.newPassword.current.value;
+        let newPassTwo = this.repeatPassword.current.value;
         let _this = this;
 
         if(!validateEmptyField([newPassOne, newPassTwo])) {
@@ -34,23 +38,17 @@ class FormChangePassword extends React.Component {
 
     doVisibleOrHiddenPassword = (e) => {
         e.preventDefault();
-        if(e.target.classList.contains("button-hidden-password")) {
-            e.target.classList.remove("button-hidden-password");
-            e.target.previousElementSibling.setAttribute("type", "password");
-        } else {
-            e.target.classList.add("button-hidden-password");
-            e.target.previousElementSibling.setAttribute("type", "text");
-        }
+        doVisibleOrHiddenPassword(e.target);
     }
 
     render() {
         return (
             <form className="form form-change-password">
                 {!this.props.flagChangePassword &&
-                    <FieldFormWithoutValue required={true} label={"New password"} type={"password"} id={"new-password"} flagPasswordField={true} showHidePassword={this.doVisibleOrHiddenPassword}/>
+                    <FieldFormWithoutValue ref={this.newPassword} required={true} label={"New password"} type={"password"} id={"new-password"} flagPasswordField={true} showHidePassword={this.doVisibleOrHiddenPassword}/>
                 }
                 {!this.props.flagChangePassword &&
-                    <FieldFormWithoutValue required={true} label={"Re-enter the new password"} type={"password"} id={"repeat-password"} flagPasswordField={true} showHidePassword={this.doVisibleOrHiddenPassword}/>
+                    <FieldFormWithoutValue ref={this.repeatPassword} required={true} label={"Re-enter the new password"} type={"password"} id={"repeat-password"} flagPasswordField={true} showHidePassword={this.doVisibleOrHiddenPassword}/>
                 }
                 {!this.props.flagChangePassword &&
                     <button className="form__submit" name="submit"

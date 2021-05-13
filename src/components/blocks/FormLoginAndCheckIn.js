@@ -6,6 +6,7 @@ import {validateEmptyField} from "../../functions/validateEmptyField";
 import {validateLengthField} from "../../functions/validateLengthField";
 import FieldFormWithoutValue from "../fields/FieldFormWithoutValue";
 import FieldFormWithValue from "../fields/FieldFormWithValue";
+import {doVisibleOrHiddenPassword} from  "../../functions/doVisibleOrHiddenPassword";
 
 class FormLoginAndCheckIn extends React.Component {
 	constructor(props) {
@@ -28,13 +29,7 @@ class FormLoginAndCheckIn extends React.Component {
 
 	doVisibleOrHiddenPassword = (e) => {
 		e.preventDefault();
-		if(e.target.classList.contains("button-hidden-password")) {
-			e.target.classList.remove("button-hidden-password");
-			e.target.previousElementSibling.setAttribute("type", "password");
-		} else {
-			e.target.classList.add("button-hidden-password");
-			e.target.previousElementSibling.setAttribute("type", "text");
-		}
+		doVisibleOrHiddenPassword(e.target);
 	}
 
 	logIntoAccount = () => {
