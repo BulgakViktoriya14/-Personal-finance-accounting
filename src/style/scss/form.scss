@@ -95,6 +95,10 @@
             border-bottom: 1px solid $colorWhite;
         }
 
+        &:focus {
+            border-bottom: 1px solid $colorRed;
+        }
+
         @include breakpoint(mobile) {
             padding: 2px 5px;
         }
@@ -160,7 +164,8 @@
                 transition: 300ms;
             }
 
-            &:hover:after {
+            &:hover:after,
+            &:focus:after {
                 width: 100%;
             }
 
@@ -194,6 +199,10 @@
 
         &.button-hidden-password {
             background-image: url("../../images/hiddenPassword.svg");
+        }
+
+        &:focus {
+            background-color: #d1d1d1;
         }
     }
 

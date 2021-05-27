@@ -70,6 +70,11 @@
         &.visible {
             opacity: 1;
             z-index: 1;
+
+            &:hover,
+            &:focus {
+                opacity: 0.75;
+            }
         }
     }
 
@@ -187,6 +192,11 @@
     border: none;
     background-repeat: no-repeat;
     background-position: center;
+
+    &:focus,
+    &:hover {
+        background-color: $colorRed;
+    }
 
     @include breakpoint(mobile) {
         height: 40px;

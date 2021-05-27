@@ -10,7 +10,8 @@
   box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2%);
 
   &:hover,
-  &:active {
+  &:active,
+  &:focus {
     background-color: $colorRed;
     color: $colorWhite;
   }
