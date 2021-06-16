@@ -12,6 +12,41 @@ import {setUserExpensesCardsAction} from "../../actions/actionUserExpensesCards"
 import ModalWindow from "../blocks/ModalWindow";
 import FormInfoProfile from "./../blocks/FormInfoProfile";
 import ButtonProfile from "../buttons/ButtonProfile";
+import styled from "styled-components";
+
+export const ProfileStyle = styled.div`
+	display: flex;
+	align-items: flex-start;
+	flex-basis: 100%;
+	
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+	}
+`;
+
+export const ProfileImageStyle = styled.div`
+	flex-basis: 35%;
+    margin: 0 5% 0 0;
+    max-width: 400px;
+    
+    @media screen and (max-width: 768px) {
+    	flex-basis: 100%;
+      	margin: 0 0 20px 0;
+      	max-width: 100%;
+      	width: 100%;
+    }
+`;
+
+export const ProfileButtonsStyle = styled.div`
+	display: flex;
+    margin: 50px 0 0 0;
+    
+    @media screen and (max-width: 768px) {
+    	flex-direction: column;
+    	margin: 20px 0 0 0;
+    }
+`;
+
 
 class Profile extends React.Component {
 	constructor(props) {
@@ -123,13 +158,13 @@ class Profile extends React.Component {
 				<ModalWindow page={"profile-password"} nameClass={"modal-window modal-window__change-password"}/>
 				<ModalWindow idUser={this.props.userId} page={"profile-avatar"} nameClass={"modal-window modal-window__change-avatar"} history={this.props.history}/>
 				<h1 className="title">Profile</h1>
-				<div className="profile">
-					<div className="profile__image wrapper-img">
+				<ProfileStyle className="profile">
+					<ProfileImageStyle className="profile__image wrapper-img">
 						<img src={this.props.userAvatar ? this.props.userAvatar : photo} alt="photo"/>
-					</div>
+					</ProfileImageStyle>
 					<FormInfoProfile handleChange={this.handleChange} flag={this.state.flag} userName={this.props.userName} userEmail={this.props.userEmail}/>
-				</div>
-				<div className="profile__wrapper-buttons">
+				</ProfileStyle>
+				<ProfileButtonsStyle className="profile__wrapper-buttons">
 					{this.state.flag &&
 						<ButtonProfile functionOnCLick={this.changeUserInfo} nameButton={"Change information about yourself"}/>
 					}
@@ -140,7 +175,7 @@ class Profile extends React.Component {
 					<ButtonProfile functionOnCLick={this.openModalWindowChangeAvatar} nameButton={"Change avatar"}/>
 					<ButtonProfile functionOnCLick={this.logout} nameButton={"Log out"}/>
 					<ButtonProfile functionOnCLick={this.deleteProfile} nameButton={"Delete profile"}/>
-				</div>
+				</ProfileButtonsStyle>
 			</div>
 		)
 	}

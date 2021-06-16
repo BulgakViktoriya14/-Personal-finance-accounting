@@ -2,6 +2,166 @@ import React from 'react';
 import firebase from 'firebase';
 import {connect} from 'react-redux';
 import {setUserSumAction} from "../../actions/actionSumUser";
+import styled from "styled-components";
+import img from '../../images/delete.svg';
+
+export const ContainerCardsStyle = styled.div`
+    width: 102%;
+    margin: 0 0 0 -1%;
+
+    @media screen and (max-width: 768px) {
+        width: 104%;
+        margin: 0 0 0 -2%;
+    }
+`;
+
+export const EmptyContainerCardsStyle = styled.p`
+    margin: 20px 10px;
+    font-size: 20px;
+    line-height: 24px;
+    color: #828282;
+
+    @media screen and (max-width: 768px) {
+       font-size: 16px;
+       line-height: 20px;
+    }
+`;
+
+export const CardStyle = styled.article`
+    display: flex;
+    flex-direction: column;
+    flex-basis: 23%;
+    box-shadow: 2px 2px 6px #b7b7b7;
+    padding: 20px;    
+    margin: 15px 1%;
+    position: relative;
+    
+     @media screen and (max-width: 768px) {
+        flex-basis: 46%;
+        margin: 7px 2%;
+        padding: 10px;
+     }
+`;
+
+export const CardTitleStyle = styled.h3`
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0 0 10px 0;
+    
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+        line-height: 18px;
+    }
+`;
+
+export const CardCategoryStyle = styled.h4`
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 300;
+    margin: 10px 0 20px 0;
+    font-family: 'Montserrat', sans-serif;
+    
+     @media screen and (max-width: 768px) {
+        font-size: 12px;
+     }
+`;
+
+export const CardBottomStyle = styled.p`
+    margin: auto 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    
+     .card__sum {
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: bold;
+        color: #b90000;
+     }
+    
+    .card__date {
+        font-size: 14px;
+        line-height: 14px;
+        color: #828282;
+    }
+    
+    @media screen and (max-width: 768px) {
+        .card__sum {
+            font-size: 14px;
+            line-height: 14px;
+        }
+        
+        .card__date {
+            font-size: 12px;
+            line-height: 12px;
+        }
+    }
+`;
+
+export const CardMoreDetailsStyle = styled.button`
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: left;
+    cursor: pointer;
+    transition: 200ms ease-in;
+    
+    @media screen and (max-width: 768px) {
+        font-size: 10px;
+        line-height: 10px;
+    }
+`;
+
+export const CardDescriptionStyle = styled.div`
+     display: flex;
+     flex-direction: column;
+     align-items: baseline;
+     position: absolute;
+     background-color: #b90000;
+     top: 0;
+     left: 0;
+     margin: 0;
+     height: 100%;
+     width: 100%;
+     color: #fff;
+     padding: 20px;
+     font-size: 14px;
+     line-height: 20px;
+     font-weight: bold;
+     z-index: -1;
+     opacity: 0;
+     transition: 200ms ease-in;
+     
+      p {
+        margin: 0;
+      }
+      
+      ${CardMoreDetailsStyle} {
+        margin: auto 0 0 0;
+        color: #fff;
+      }
+`;
+
+export const ButtonDeleteCardStyle = styled.button`
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: $colorRed;
+    border: none;
+    background-image: url(${img});
+    background-size: 67%;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: -1;
+    transition: 100ms;
+`;
 
 class Cards extends React.Component {
     constructor(props) {
@@ -67,31 +227,31 @@ class Cards extends React.Component {
 
     render() {
 		return (
-            <div className="container cards">
+            <ContainerCardsStyle className="container cards">
                 {!this.state.arrayCards.length &&
-                    <p className="cards-container-empty">You haven't created any cards yet.</p>
+                    <EmptyContainerCardsStyle className="cards-container-empty">You haven't created any cards yet.</EmptyContainerCardsStyle>
                 }
                 {this.state.arrayCards.map((item) =>
-                    <article className="card" id={item.id} key={item.id}>
-                        <button className={`card__button-delete${this.props.flagDeleteCard ? " visible" : ""}`} onClick={this.deleteCard}/>
-                        <h3 className="card__title">{item.title}</h3>
-                        <h4 className="card__category">{item.category}</h4>
+                    <CardStyle className="card" id={item.id} key={item.id}>
+                        <ButtonDeleteCardStyle className={`card__button-delete${this.props.flagDeleteCard ? " visible" : ""}`} onClick={this.deleteCard}/>
+                        <CardTitleStyle className="card__title">{item.title}</CardTitleStyle>
+                        <CardCategoryStyle className="card__category">{item.category}</CardCategoryStyle>
                         {item.description &&
-                            <button className="card__more-details" onClick={this.openMoreDetails}>More details</button>
+                            <CardMoreDetailsStyle className="card__more-details" onClick={this.openMoreDetails}>More details</CardMoreDetailsStyle>
                         }
-                        <p className="card__bottom">
+                        <CardBottomStyle className="card__bottom">
                             <span className="card__sum">{item.money}</span>
                             <span className="card__date">{item.date}</span>
-                        </p>
+                        </CardBottomStyle>
                         {item.description &&
-                            <div className="card__description">
+                            <CardDescriptionStyle className="card__description">
                                 <p>{item.description}</p>
-                                <button className="card__more-details" onClick={this.closeMoreDetails}>Hide</button>
-                            </div>
+                                <CardMoreDetailsStyle className="card__more-details" onClick={this.closeMoreDetails}>Hide</CardMoreDetailsStyle>
+                            </CardDescriptionStyle>
                         }
-                    </article>
+                    </CardStyle>
                 )}
-            </div>
+            </ContainerCardsStyle>
         )
 	}
 }

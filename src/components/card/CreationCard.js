@@ -1,6 +1,36 @@
 import React from 'react';
 import close from "../../images/close.svg";
 import FormCreateCard from "../blocks/FormCreateCard";
+import styled from "styled-components";
+
+export const BlockCreationCardStyle = styled.div`
+	@media screen and (max-width: 768px) {
+		position: fixed;
+        top: 60px;
+        left: 0;
+        height: calc(100vh - 60px);
+        background-color: #fff;
+        z-index: -1;
+        opacity: 0;
+        transition: 200ms;
+        padding: 30px;
+        width: 100%;
+	}
+`;
+
+export const ButtonCloseStyle = styled.button`
+	display: none;
+	
+	@media screen and (max-width: 768px) {
+		display: block;
+	}
+`;
+
+export const SubtitleCreationCardStyle = styled.h2`
+	@media screen and (max-width: 768px) {
+		margin: 0;
+	}
+`;
 
 class CreationCard extends React.Component {
 	constructor(props) {
@@ -18,11 +48,11 @@ class CreationCard extends React.Component {
 	  
 	render() {
 		return (
-			<div className="creation-card" ref={this.blockCreateCard}>
-				<button className="close" onClick={this.closePopupCreationCard}><img src={close} alt="close"/></button>
-				<h2 className="subtitle">Create card</h2>
+			<BlockCreationCardStyle className="creation-card" ref={this.blockCreateCard}>
+				<ButtonCloseStyle className="close" onClick={this.closePopupCreationCard}><img src={close} alt="close"/></ButtonCloseStyle>
+				<SubtitleCreationCardStyle className="subtitle">Create card</SubtitleCreationCardStyle>
 				<FormCreateCard type={this.props.type}/>
-			</div>
+			</BlockCreationCardStyle>
 		)
 	}
 }

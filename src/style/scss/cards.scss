@@ -1,72 +1,5 @@
-.cards {
-	width: 102%;
-    margin: 0 0 0 -1%;
-
-    @include breakpoint(mobile) {
-        width: 104%;
-        margin: 0 0 0 -2%;
-    }
-
-    &-container-empty {
-        margin: 20px 10px;
-        font-size: 20px;
-        line-height: 24px;
-        color: $colorGrey;
-
-        @include breakpoint(mobile) {
-            font-size: 16px;
-            line-height: 20px;
-        }
-    }
-}
-
 .card {
-    display: flex;
-    flex-direction: column;
-	flex-basis: 23%;
-    box-shadow: 2px 2px 6px #b7b7b7;
-	padding: 20px;    
-	margin: 15px 1%;
-    position: relative;
-
-    &__title {
-        font-size: 18px;
-        line-height: 22px;
-        margin: 0 0 10px 0;
-    }
-
-    &__category {
-        font-size: 16px;
-        line-height: 20px;
-        font-weight: 300;
-        margin: 10px 0 20px 0;
-        font-family: 'Montserrat', sans-serif;
-    }
-
-    &__bottom {
-        margin: auto 0 0 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        width: 100%;
-    }
-
     &__button-delete {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 20px;
-        height: 20px;
-        background-color: $colorRed;
-        border: none;
-        background-image: url("../../images/delete.svg");
-        background-size: 67%;
-        background-position: center;
-        background-repeat: no-repeat;
-        opacity: 0;
-        z-index: -1;
-        transition: 100ms;
-
         &.visible {
             opacity: 1;
             z-index: 1;
@@ -78,60 +11,6 @@
         }
     }
 
-    &__sum {
-        font-size: 18px;
-        line-height: 18px;
-        font-weight: bold;
-        color: $colorRed;
-    }
-    &__date {
-        font-size: 14px;
-        line-height: 14px;
-        color: $colorGrey;
-    }
-
-    &__more-details {
-        background-color: transparent;
-        border: none;
-        padding: 0;
-        margin: 0 0 20px 0;
-        font-size: 12px;
-        line-height: 12px;
-        text-align: left;
-        cursor: pointer;
-        transition: 200ms ease-in;
-    }
-
-    &__description {
-        display: flex;
-        flex-direction: column;
-        align-items: baseline;
-        position: absolute;
-        background-color: $colorRed;
-        top: 0;
-        left: 0;
-        margin: 0;
-        height: 100%;
-        width: 100%;
-        color: $colorWhite;
-        padding: 20px;
-        font-size: 14px;
-        line-height: 20px;
-        font-weight: bold;
-        z-index: -1;
-        opacity: 0;
-        transition: 200ms ease-in;
-
-        p {
-            margin: 0;
-        }
-
-        .card__more-details {
-            margin: auto 0 0 0;
-            color: $colorWhite;
-        }
-    }
-
     &.open {
         .card__description {
             z-index: 2;
@@ -139,101 +18,13 @@
         }
     }
 
-    @include breakpoint(mobile) {
-        flex-basis: 46%;
-        margin: 7px 2%;
-        padding: 10px;
-
-        &__title {
-            font-size: 14px;
-            line-height: 18px;
-        }
-
-        &__category {
-            font-size: 12px;
-        }
-
-        &__sum {
-            font-size: 14px;
-            line-height: 14px;
-        }
-
-        &__date {
-            font-size: 12px;
-            line-height: 12px;
-        }
-
-        &__more-details {
-            font-size: 10px;
-            line-height: 10px;
-        }
-    }
-}
-
-.button-open-popup-add-card {
-   @include buttonMobileOpen();
-    background-image: url("../../images/plus.svg");
-    top: 110px;
-
-    @include breakpoint(mobile) {
-        display: block;
-    }
-}
-
-.button-delete-card {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    background-color: #000;
-    background-image: url("../../images/delete.svg");
-    background-size: 70% 70%;
-    height: 60px;
-    width: 60px;
-    border: none;
-    background-repeat: no-repeat;
-    background-position: center;
-
-    &:focus,
-    &:hover {
-        background-color: $colorRed;
-    }
-
-    @include breakpoint(mobile) {
-        height: 40px;
-        width: 40px;
-    }
-}
-
-.creation-card {
-    .close {
-        display: none;
-    }
 }
 
 @include breakpoint(mobile) {
     .creation-card {
-        position: fixed;
-        top: 60px;
-        left: 0;
-        height: calc(100vh - 60px);
-        background-color: $colorWhite;
-        z-index: -1;
-        opacity: 0;
-        transition: 200ms;
-        padding: 30px;
-        width: 100%;
-
-        .subtitle {
-            margin: 0;
-        }
-
         &.creation-card_open {
             z-index: 2;
             opacity: 1;
-        }
-
-        .close {
-            display: block;
         }
     }
 }

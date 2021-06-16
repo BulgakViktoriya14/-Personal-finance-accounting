@@ -1,10 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
+import {btnDefault} from '../style-components/buttonStyle';
 
+const BtnEditProfile = styled(btnDefault)``;
 
 class ButtonProfile extends React.Component {
     render() {
         return (
-            <button type="button" onClick={this.props.functionOnCLick} className="button-edit-profile">{this.props.nameButton}</button>
+            <BtnEditProfile type="button" onClick={this.props.functionOnCLick} className="button-edit-profile">{this.props.nameButton}</BtnEditProfile>
         )
     }
 }

@@ -5,6 +5,14 @@ import firebase from 'firebase';
 import {setUserSumAction} from "../../actions/actionSumUser";
 import {connect} from 'react-redux';
 import FieldFormWithoutValue from "../fields/FieldFormWithoutValue";
+import styled from "styled-components";
+
+export const FormCreateCardStyle = styled.form`
+    justify-content: space-between;
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    align-items: flex-end;
+`;
 
 class FormCreateCard extends React.Component {
     constructor(props) {
@@ -108,7 +116,7 @@ class FormCreateCard extends React.Component {
 
     render() {
         return (
-            <form className="form form-add-card" ref={this.form}>
+            <FormCreateCardStyle className="form form-add-card" ref={this.form}>
                 <FieldFormWithoutValue ref={this.name} required={true} label={"Title"} type={"text"} id={"name"} flagPasswordField={false}/>
                 <FieldFormWithoutValue ref={this.category} label={"Category"} type={"text"} id={"category"} flagPasswordField={false}/>
                 <FieldFormWithoutValue ref={this.sum} required={true} label={"Amount"} type={"number"} id={"sum"} flagPasswordField={false}/>
@@ -117,7 +125,7 @@ class FormCreateCard extends React.Component {
                 {this.state.errorText &&
                     <p className="massage-error">{this.state.errorText}</p>
                 }
-            </form>
+            </FormCreateCardStyle>
         )
     }
 }

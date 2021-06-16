@@ -1,37 +1,4 @@
 .form {
-    display: flex;
-
-    &__item {
-        border: none;
-        display: flex;
-        flex-direction: column;
-        padding: 0;
-        width: 100%;
-        margin: 0;
-        position: relative;
-    }
-
-    &__label {
-        font-size: 16px;
-        line-height: 16px;
-        font-weight: 600;
-        margin: 0 0 5px 5px;
-        font-family: 'Montserrat-SemiBold', sans-serif;
-
-        @include breakpoint(mobile) {
-            font-size: 14px;
-            line-height: 14px;
-        }
-
-        &.required {
-            &:after {
-                content: "*";
-                color: $colorRed;
-                margin: 0 0 0 3px;
-            }
-        }
-    }
-
     &__notice {
         color: #a1a1a1;
         font-family: 'Montserrat', sans-serif;
@@ -83,46 +50,6 @@
         }
     }
 
-    &__input,
-    &__textarea {
-        padding: 5px;
-        font-size: 14px;
-        line-height: 14px;
-        border-bottom: 1px solid $colorBlack;
-
-        &[readonly] {
-            cursor: default;
-            border-bottom: 1px solid $colorWhite;
-        }
-
-        &:focus {
-            border-bottom: 1px solid $colorRed;
-        }
-
-        @include breakpoint(mobile) {
-            padding: 2px 5px;
-        }
-
-        &[type="file"] {
-            border: none;
-            margin: 0;
-            padding: 0;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        &:-webkit-autofill,
-        &:-webkit-autofill:hover,
-        &:-webkit-autofill:focus,
-        &:-webkit-autofill:active  {
-            -webkit-box-shadow: 0 0 0 15px $colorWhite inset !important;
-        }
-    }
 
     &__wrapper-buttons {
         display: flex;
@@ -143,74 +70,14 @@
     }
 
     &__link {
-        font-weight: bold;
-        color: $colorRed;
 
-        &.button {
-            background-color: $colorWhite;
-            border: none;
-            padding: 0;
-            margin: 10px 0 0 0;
-            position: relative;
-
-            &:after {
-                content: "";
-                position: absolute;
-                bottom: -3px;
-                left: 0;
-                width: 0;
-                height: 1.5px;
-                background-color: $colorRed;
-                transition: 300ms;
-            }
-
-            &:hover:after,
-            &:focus:after {
-                width: 100%;
-            }
-
-            @include breakpoint(mobile) {
-                &:after {
-                    display: none;
-                }
-            }
-        }
-
-        &:after {
-            background-color: $colorRed;
-        }
     }
 
     textarea {
         height: 28px;
     }
 
-    .button-visible-password {
-        position: absolute;
-        right: 0;
-        bottom: 7px;
-        height: 19px;
-        width: 32px;
-        background-color: $colorWhite;
-        border: none;
-        background-image: url("../../images/visiblePassword.svg");
-        background-size: 100% 100%;
-        transition: 200ms;
-
-        &.button-hidden-password {
-            background-image: url("../../images/hiddenPassword.svg");
-        }
-
-        &:focus {
-            background-color: #d1d1d1;
-        }
-    }
-
     &-add-card {
-        justify-content: space-between;
-        flex-basis: 100%;
-        flex-wrap: wrap;
-
         .form__item {
             flex-basis: 19%;
             width: 19%;
@@ -270,17 +137,6 @@
     }
 
     &-login-checkin {
-        flex-direction: column;
-        flex-basis: 50%;
-        max-width: 500px;
-        margin: 0 auto;
-
-        .form__item {
-            flex-basis: 100%;
-            margin: 25px 0 0 0;
-            padding: 25px 0 0 0;
-        }
-
         @include breakpoint(mobile) {
             .form__wrapper-buttons {
                 margin: 0;

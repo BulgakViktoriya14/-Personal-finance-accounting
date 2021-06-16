@@ -1,4 +1,25 @@
 import React from 'react';
+import styled from 'styled-components';
+import img from '../../images/plus.svg';
+
+const BtnOpenPopupAddCard = styled.button`
+  display: none;
+  position: fixed;
+  left: 0;
+  border: none;
+  background-color: #000;
+  width: 40px;
+  height: 30px;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(${img});
+  top: 110px;
+  
+  @media screen and (max-width: 768px) {
+      display: block;
+  }
+`;
 
 class ButtonOpenPopupAddCard extends React.Component {
     openPopupAddCard = () => {
@@ -7,7 +28,7 @@ class ButtonOpenPopupAddCard extends React.Component {
 
     render() {
         return (
-            <button className="button-open-popup-add-card" onClick={this.openPopupAddCard}/>
+            <BtnOpenPopupAddCard className="button-open-popup-add-card" onClick={this.openPopupAddCard}/>
         )
     }
 }

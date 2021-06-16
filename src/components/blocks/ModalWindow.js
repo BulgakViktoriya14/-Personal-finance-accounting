@@ -3,6 +3,52 @@ import FormChangePassword from "./FormChangePassword";
 import close from "../../images/close.svg";
 import FormChangeAvatar from "./FormChangeAvatar";
 import FormSetNewPassword from "./FormSetNewPassword";
+import styled from "styled-components";
+
+export const ModalWindowStyle = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 300ms;
+    transform: translateY(-100vh);
+    cursor: pointer;
+    
+    &.open {
+        transform: rotateY(0);
+    }
+`;
+
+export const ModalWindowBlockStyle = styled.div`
+    transition: 300ms;
+    width: 500px;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    cursor: default;
+    
+     @media screen and (max-width: 768px) {
+        width: 100%;
+        height: 100vh;
+        box-shadow: none;
+    }
+`;
+
+
+export const ModalWindowTitleStyle = styled.h4`
+    color: $colorRed;
+    font-size: 18px;
+    line-height: 18px;
+    text-align: center;
+    margin: 0 0 30px 0;
+`;
 
 class ModalWindow extends React.Component {
     constructor(props) {
@@ -47,14 +93,14 @@ class ModalWindow extends React.Component {
 
     render() {
         return (
-            <div className={this.props.nameClass} onClick={this.closeModalWindow} ref={this.modalWindow}>
-                <div className="modal-window__block">
+            <ModalWindowStyle className={this.props.nameClass} onClick={this.closeModalWindow} ref={this.modalWindow}>
+                <ModalWindowBlockStyle className="modal-window__block">
                     {this.props.page === "page-login" &&
                     <div className="modal-window__content">
                         <button className="close">
                             <img src={close} alt="icon close"/>
                         </button>
-                        <h4 className="modal-window__title">Change password</h4>
+                        <ModalWindowTitleStyle className="modal-window__title">Change password</ModalWindowTitleStyle>
                         <FormSetNewPassword functionCloseWindow={this.closeModalWindowAfterChangePassword}/>
                     </div>
                     }
@@ -63,7 +109,7 @@ class ModalWindow extends React.Component {
                             <button className="close">
                                 <img src={close} alt="icon close"/>
                             </button>
-                            <h4 className="modal-window__title">Change password</h4>
+                            <ModalWindowTitleStyle className="modal-window__title">Change password</ModalWindowTitleStyle>
                             <FormChangePassword functionCloseWindow={this.closeModalWindowAfterChangePassword}
                                                 openSuccessResult={this.openSuccessResult} flagChangePassword={this.state.flagChangePassword}/>
                         </div>
@@ -73,7 +119,7 @@ class ModalWindow extends React.Component {
                             <button className="close">
                                 <img src={close} alt="icon close"/>
                             </button>
-                            <h4 className="modal-window__title">Change avatar</h4>
+                            <ModalWindowTitleStyle className="modal-window__title">Change avatar</ModalWindowTitleStyle>
                             <FormChangeAvatar history={this.props.history} ref={this.inputFile} idUser={this.props.idUser}/>
                         </div>
                     }
@@ -84,8 +130,8 @@ class ModalWindow extends React.Component {
                                     onClick={() => this.props.history.push("/login")}>Login to your account</button>
                         </div>
                     }
-                </div>
-            </div>
+                </ModalWindowBlockStyle>
+            </ModalWindowStyle>
         )
     }
 }

@@ -7,6 +7,27 @@ import {validateLengthField} from "../../functions/validateLengthField";
 import FieldFormWithoutValue from "../fields/FieldFormWithoutValue";
 import FieldFormWithValue from "../fields/FieldFormWithValue";
 import {doVisibleOrHiddenPassword} from  "../../functions/doVisibleOrHiddenPassword";
+import styled from "styled-components";
+import {btnDefault} from "../style-components/buttonStyle";
+import {linkStyle} from "../style-components/linkStyle";
+
+const BtnLogin = styled(btnDefault)`
+	box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
+`;
+
+const FormLogin = styled.form`
+	display: flex;
+  	flex-direction: column;
+    flex-basis: 50%;
+    max-width: 500px;
+    margin: 0 auto;
+`;
+
+const BtnForgot = styled(linkStyle)`
+	color: #b90000;
+	font-weight: bold;
+	cursor: pointer;
+ `;
 
 class FormLoginAndCheckIn extends React.Component {
 	constructor(props) {
@@ -75,7 +96,7 @@ class FormLoginAndCheckIn extends React.Component {
 
 	render() {
 		return (
-			<form className="form form-login-checkin">
+			<FormLogin className="form form-login-checkin">
 				{!this.props.account &&
 					<FieldFormWithoutValue label={"Your name"} id={"name"} type={"text"} required={true} functionOnChange={this.handleChange}/>
 				}
@@ -85,19 +106,18 @@ class FormLoginAndCheckIn extends React.Component {
 					<FieldFormWithValue type={"number"} label={"Starting amount"} id={"money"} value={this.state.money} functionOnChange={this.handleChange}/>
 				}
 				<div className="form__wrapper-buttons">
-				    <input className="form__submit" type="button" name="submit" value={this.props.textButton} onClick={this.logIntoAccount}/>
+					<BtnLogin className="form__submit" onClick={this.logIntoAccount}>{this.props.textButton}</BtnLogin>
 				  	<div className="form__wrapper-link">
 						<NavLink to={this.props.link} className="form__link">{this.props.textLink}</NavLink>
 						{this.props.account &&
-							<button className="form__link button" onClick={this.setNewPassword}>Forgot your password?</button>
+							<BtnForgot className="form__link button" onClick={this.setNewPassword}>Forgot your password?</BtnForgot>
 						}
 					</div>
-
 			    </div>
 				{this.state.errorText &&
 					<p className="massage-error">{this.state.errorText}</p>
 				}
-			</form>
+			</FormLogin>
 		)
 	}
 }
