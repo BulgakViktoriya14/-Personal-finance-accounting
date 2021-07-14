@@ -137,8 +137,8 @@ class ModalWindow extends React.Component {
                     {this.props.page === "check-in" &&
                         <MessageSuccessStyle className="modal-window__content success-result">
                             <p className="success-result__text">You are registered</p>
-                            <BtnDefault className="form__submit" name="submit"
-                                    onClick={() => this.props.history.push("/login")}>Login to your account</BtnDefault>
+                            <BtnDefault type="submit" className="form__submit" name="submit"
+                                    onClick={() => this.props.history.push("/login")} value="Login to your account"/>
                         </MessageSuccessStyle>
                     }
                 </ModalWindowBlockStyle>

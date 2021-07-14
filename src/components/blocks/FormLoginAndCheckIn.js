@@ -140,11 +140,11 @@ class FormLoginAndCheckIn extends React.Component {
 					<FieldFormWithValue type={"number"} label={"Starting amount"} id={"money"} value={this.state.money} functionOnChange={this.handleChange}/>
 				}
 				<FormWrapperStyle className="form__wrapper-buttons">
-					<BtnDefault className="form__submit" onClick={this.logIntoAccount}>{this.props.textButton}</BtnDefault>
+					<BtnDefault type="submit" className="form__submit" onClick={this.logIntoAccount} value={this.props.textButton}/>
 				  	<FormWrapperLinkStyle className="form__wrapper-link">
 						<NavLink to={this.props.link} className="form__link">{this.props.textLink}</NavLink>
 						{this.props.account &&
-							<BtnForgot className="form__link button" onClick={this.setNewPassword}>Forgot your password?</BtnForgot>
+							<BtnForgot className="form__link button" onClick={this.setNewPassword} value="Forgot your password?"/>
 						}
 					</FormWrapperLinkStyle>
 			    </FormWrapperStyle>

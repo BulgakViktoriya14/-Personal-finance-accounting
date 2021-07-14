@@ -76,14 +76,14 @@ class FormChangePassword extends React.Component {
                     <FieldFormWithoutValue ref={this.repeatPassword} required={true} label={"Re-enter the new password"} type={"password"} id={"repeat-password"} flagPasswordField={true} showHidePassword={this.doVisibleOrHiddenPassword}/>
                 }
                 {!this.props.flagChangePassword &&
-                    <BtnDefault className="form__submit" name="submit"
-                       onClick={this.changePassword}>Save</BtnDefault>
+                    <BtnDefault type="submit" className="form__submit" name="submit"
+                       onClick={this.changePassword} value="Save"/>
                 }
                 {this.props.flagChangePassword &&
                     <MessageSuccessStyle className="success-result">
                         <p className="success-result__text">Your password has been updated</p>
-                        <BtnDefault className="form__submit" name="submit"
-                                onClick={this.props.functionCloseWindow}>Close</BtnDefault>
+                        <BtnDefault type="submit" className="form__submit" name="submit"
+                                onClick={this.props.functionCloseWindow} value="Close"/>
                     </MessageSuccessStyle>
                 }
                 {this.state.errorText &&

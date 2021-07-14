@@ -107,8 +107,8 @@ class FormChangeAvatar extends React.Component {
                     <FormLabel htmlFor="money" className="form__label" ref={this.labelInputFile}>Select a file</FormLabel>
                     <FormInput type="file" id="file" name="file" className="form__input" onChange={this.uploadFile} ref={this.props.inputFile}/>
                 </WrapperFileStyle>
-                <BtnDefault className="form__submit" name="submit"
-                        onClick={this.saveNewAvatar}>Save photo</BtnDefault>
+                <BtnDefault type="submit" className="form__submit" name="submit"
+                        onClick={this.saveNewAvatar} value="Save photo"/>
                 {this.state.errorText &&
                     <MessageErrorStyle className="massage-error">{this.state.errorText}</MessageErrorStyle>
                 }

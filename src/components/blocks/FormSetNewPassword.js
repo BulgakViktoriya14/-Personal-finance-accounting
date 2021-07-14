@@ -53,14 +53,14 @@ class FormSetNewPassword extends React.Component {
                     <FieldFormWithoutValue ref={this.email} label={"Your email"} id={"email-for-password"} type={"email"} required={true}/>
                 }
                 {!this.state.flagSendEmail &&
-                    <BtnDefault className="form__submit" name="submit"
-                        onClick={this.sendEmail}>Send email</BtnDefault>
+                    <BtnDefault className="form__submit" type="submit" name="submit"
+                        onClick={this.sendEmail} value="Send email"/>
                 }
                 {this.state.flagSendEmail &&
                 <MessageSuccessStyle className="success-result">
                     <p className="success-result__text">Check your email</p>
-                    <BtnDefault className="form__submit" name="submit"
-                            onClick={this.props.functionCloseWindow}>Close</BtnDefault>
+                    <BtnDefault type="submit" className="form__submit" name="submit"
+                            onClick={this.props.functionCloseWindow} value="Close"/>
                 </MessageSuccessStyle>
                 }
             </FormSetNewPasswordStyle>
