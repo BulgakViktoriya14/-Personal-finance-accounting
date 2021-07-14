@@ -1,4 +1,5 @@
 import {createGlobalStyle} from 'styled-components';
+import {variablesStyle} from './variablesStyle';
 
 export const CommonStyle = createGlobalStyle`
 * {
@@ -29,8 +30,8 @@ body {
     font-size: 14px;
     line-height: 17px;
     letter-spacing: 0.3px;
-    color: #000;
-    background-color: #fff;
+    color: ${variablesStyle.colors.colorBlack};
+    background-color: ${variablesStyle.colors.colorWhite};
 }
 
 button {
@@ -60,10 +61,10 @@ ul {
 }
 a {
     text-decoration: none;
-    color: #000;
+    color: ${variablesStyle.colors.colorBlack};
     position: relative;
     outline: none;
-    
+    width: fit-content;
 
     &:after {
         content: "";
@@ -72,7 +73,7 @@ a {
         left: 0;
         width: 0;
         height: 1.5px;
-        background-color: #000;
+        background-color: ${variablesStyle.colors.colorBlack};
         transition: 300ms;
     }
 
@@ -81,10 +82,10 @@ a {
         width: 100%;
     }
 
-    @include breakpoint(mobile) {
-    &:after {
-        display: none;
-    }
+    @media screen and (max-width: 768px) {
+        &:after {
+            display: none;
+        }
   }
 }
 
@@ -111,13 +112,17 @@ a {
     display: flex;
 }
 
+textarea {
+    height: 28px;
+}
+
 .content {
     display: flex;
     flex-basis: 100%;
     height: calc(100vh - 110px);
 
-    @include breakpoint(mobile) {
-    height: calc(100vh - 60px);
+    @media screen and (max-width: 768px) {
+        height: calc(100vh - 60px);
     }
 }
 
@@ -134,13 +139,17 @@ a {
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: #828282;
+        background-color: ${variablesStyle.colors.colorGrey};
         outline: none;
     }
 
     @media screen and (max-width: 768px) {
         flex-basis: 100%;
         padding: 30px 30px 0 30px;
+    }
+    
+     @media screen and (max-width: 1100px) {
+        padding: 30px 40px;
     }
 }
 
@@ -149,7 +158,7 @@ a {
     font-size: 30px;
     line-height: 34px;
     margin: 0 0 30px 0;
-    color: #b90000;
+    color: ${variablesStyle.colors.colorRed};
 
     @media screen and (max-width: 768px) {
         font-size: 26px;
@@ -178,7 +187,7 @@ a {
 }
 
 .close {
-    background-color: #fff;
+    background-color: ${variablesStyle.colors.colorWhite};
     border: none;
     width: 25px;
     height: 25px;

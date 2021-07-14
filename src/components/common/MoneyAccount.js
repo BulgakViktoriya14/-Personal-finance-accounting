@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import styled from "styled-components";
+import {variablesStyle} from '../style-components/variablesStyle';
 
 export const MoneyAccountStyle = styled.div`
     @media screen and (max-width: 768px) {
@@ -11,9 +12,9 @@ export const MoneyAccountStyle = styled.div`
     justify-content: space-between;
     align-items: center;
 	margin: auto 0 0 0;
-    background-color: #000;
+    background-color: ${variablesStyle.colors.colorBlack};
     padding: 30px 10px;
-    color: #fff;
+    color: ${variablesStyle.colors.colorWhite};
 `;
 
 export const MoneyAccountTitleStyle = styled.h3`

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {variablesStyle} from './variablesStyle';
 
 export const formLabelStyle = styled.label`
      font-size: 16px;
@@ -10,7 +11,7 @@ export const formLabelStyle = styled.label`
       &.required {
         &:after {
             content: "*";
-            color: #b90000;
+            color: ${variablesStyle.colors.colorRed};
             margin: 0 0 0 3px;
         }
      }

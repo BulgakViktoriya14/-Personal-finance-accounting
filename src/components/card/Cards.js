@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {setUserSumAction} from "../../actions/actionSumUser";
 import styled from "styled-components";
 import img from '../../images/delete.svg';
+import {variablesStyle} from '../style-components/variablesStyle';
 
 export const ContainerCardsStyle = styled.div`
     width: 102%;
@@ -19,28 +20,12 @@ export const EmptyContainerCardsStyle = styled.p`
     margin: 20px 10px;
     font-size: 20px;
     line-height: 24px;
-    color: #828282;
+    color: ${variablesStyle.colors.colorGrey};
 
     @media screen and (max-width: 768px) {
        font-size: 16px;
        line-height: 20px;
     }
-`;
-
-export const CardStyle = styled.article`
-    display: flex;
-    flex-direction: column;
-    flex-basis: 23%;
-    box-shadow: 2px 2px 6px #b7b7b7;
-    padding: 20px;    
-    margin: 15px 1%;
-    position: relative;
-    
-     @media screen and (max-width: 768px) {
-        flex-basis: 46%;
-        margin: 7px 2%;
-        padding: 10px;
-     }
 `;
 
 export const CardTitleStyle = styled.h3`
@@ -77,13 +62,13 @@ export const CardBottomStyle = styled.p`
         font-size: 18px;
         line-height: 18px;
         font-weight: bold;
-        color: #b90000;
+        color: ${variablesStyle.colors.colorRed};
      }
     
     .card__date {
         font-size: 14px;
         line-height: 14px;
-        color: #828282;
+        color: ${variablesStyle.colors.colorGrey};
     }
     
     @media screen and (max-width: 768px) {
@@ -121,13 +106,13 @@ export const CardDescriptionStyle = styled.div`
      flex-direction: column;
      align-items: baseline;
      position: absolute;
-     background-color: #b90000;
+     background-color: ${variablesStyle.colors.colorRed};
      top: 0;
      left: 0;
      margin: 0;
      height: 100%;
      width: 100%;
-     color: #fff;
+     color: ${variablesStyle.colors.colorWhite};
      padding: 20px;
      font-size: 14px;
      line-height: 20px;
@@ -142,7 +127,7 @@ export const CardDescriptionStyle = styled.div`
       
       ${CardMoreDetailsStyle} {
         margin: auto 0 0 0;
-        color: #fff;
+        color: ${variablesStyle.colors.colorWhite};
       }
 `;
 
@@ -152,7 +137,7 @@ export const ButtonDeleteCardStyle = styled.button`
     right: 0;
     width: 20px;
     height: 20px;
-    background-color: $colorRed;
+    background-color: ${variablesStyle.colors.colorRed};
     border: none;
     background-image: url(${img});
     background-size: 67%;
@@ -161,6 +146,39 @@ export const ButtonDeleteCardStyle = styled.button`
     opacity: 0;
     z-index: -1;
     transition: 100ms;
+    
+    &.visible {
+        opacity: 1;
+        z-index: 1;
+
+        &:hover,
+        &:focus {
+            opacity: 0.75;
+        }
+    }
+`;
+
+export const CardStyle = styled.article`
+    display: flex;
+    flex-direction: column;
+    flex-basis: 23%;
+    box-shadow: 2px 2px 6px #b7b7b7;
+    padding: 20px;    
+    margin: 15px 1%;
+    position: relative;
+    
+     @media screen and (max-width: 768px) {
+        flex-basis: 46%;
+        margin: 7px 2%;
+        padding: 10px;
+     }
+     
+     &.open {
+        ${CardDescriptionStyle} {
+            z-index: 2;
+            opacity: 1;
+        }
+     }
 `;
 
 class Cards extends React.Component {

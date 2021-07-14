@@ -3,6 +3,31 @@ import firebase from 'firebase';
 import {validateEmptyField} from "../../functions/validateEmptyField";
 import FieldFormWithoutValue from "../fields/FieldFormWithoutValue";
 import {doVisibleOrHiddenPassword} from  "../../functions/doVisibleOrHiddenPassword";
+import styled from "styled-components";
+import {btnDefault} from "../style-components/buttonStyle";
+import {messageErrorStyle} from "../style-components/messageErrorStyle";
+import {messageSuccessStyle} from "../style-components/messageSuccessStyle";
+
+const MessageSuccessStyle = styled(messageSuccessStyle)``;
+
+const FormChangePasswordStyle = styled.form`
+    flex-direction: column;
+
+    .form__item {
+        margin: 0 0 30px 0;
+    }
+
+    .form__submit {
+        max-width: fit-content;
+        margin: 0 auto;
+    }
+`;
+
+const MessageErrorStyle = styled(messageErrorStyle)``;
+
+const BtnDefault = styled(btnDefault)`
+	box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
+`;
 
 class FormChangePassword extends React.Component {
     constructor(props) {
@@ -43,7 +68,7 @@ class FormChangePassword extends React.Component {
 
     render() {
         return (
-            <form className="form form-change-password">
+            <FormChangePasswordStyle className="form form-change-password">
                 {!this.props.flagChangePassword &&
                     <FieldFormWithoutValue ref={this.newPassword} required={true} label={"New password"} type={"password"} id={"new-password"} flagPasswordField={true} showHidePassword={this.doVisibleOrHiddenPassword}/>
                 }
@@ -51,20 +76,20 @@ class FormChangePassword extends React.Component {
                     <FieldFormWithoutValue ref={this.repeatPassword} required={true} label={"Re-enter the new password"} type={"password"} id={"repeat-password"} flagPasswordField={true} showHidePassword={this.doVisibleOrHiddenPassword}/>
                 }
                 {!this.props.flagChangePassword &&
-                    <button className="form__submit" name="submit"
-                       onClick={this.changePassword}>Save</button>
+                    <BtnDefault className="form__submit" name="submit"
+                       onClick={this.changePassword}>Save</BtnDefault>
                 }
                 {this.props.flagChangePassword &&
-                    <div className="success-result">
+                    <MessageSuccessStyle className="success-result">
                         <p className="success-result__text">Your password has been updated</p>
-                        <button className="form__submit" name="submit"
-                                onClick={this.props.functionCloseWindow}>Close</button>
-                    </div>
+                        <BtnDefault className="form__submit" name="submit"
+                                onClick={this.props.functionCloseWindow}>Close</BtnDefault>
+                    </MessageSuccessStyle>
                 }
                 {this.state.errorText &&
-                    <p className="massage-error">{this.state.errorText}</p>
+                    <MessageErrorStyle className="massage-error">{this.state.errorText}</MessageErrorStyle>
                 }
-            </form>
+            </FormChangePasswordStyle>
         )
     }
 }

@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import img from '../../images/delete.svg';
+import {variablesStyle} from '../style-components/variablesStyle';
 
 const BtnDeleteCards = styled.button`
         position: fixed;
         right: 0;
         bottom: 0;
-        background-color: #000;
+        background-color: ${variablesStyle.colors.colorBlack};
         background-image: url(${img});
         background-size: 70% 70%;
         height: 60px;
@@ -17,7 +18,7 @@ const BtnDeleteCards = styled.button`
     
         &:focus,
         &:hover {
-            background-color: #b90000;
+            background-color: ${variablesStyle.colors.colorRed};
         }
     
         @include breakpoint(mobile) {

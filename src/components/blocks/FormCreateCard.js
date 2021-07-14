@@ -6,13 +6,76 @@ import {setUserSumAction} from "../../actions/actionSumUser";
 import {connect} from 'react-redux';
 import FieldFormWithoutValue from "../fields/FieldFormWithoutValue";
 import styled from "styled-components";
+import {btnDefault} from "../style-components/buttonStyle";
+import {messageErrorStyle} from "../style-components/messageErrorStyle";
 
-export const FormCreateCardStyle = styled.form`
+const MessageErrorStyle = styled(messageErrorStyle)``;
+
+const FormCreateCardStyle = styled.form`
     justify-content: space-between;
     flex-basis: 100%;
     flex-wrap: wrap;
     align-items: flex-end;
+    
+    .form__item {
+        flex-basis: 19%;
+        width: 19%;
+
+        &:nth-child(3) {
+           flex-basis: 9%;
+           width: 9%;
+        }
+
+        &:nth-child(4) {
+            flex-basis: 29%;
+            width: 29%;
+        }
+    }
+    
+    @media screen and (max-width: 1100px) {
+        flex-wrap: wrap;
+
+        .button-add-card {
+            flex-basis: 25%;
+            margin: 20px 0 0 0;
+        }
+
+        .form__item {
+            flex-basis: 25%;
+            width: 25%;
+
+            &:nth-child(3) {
+                flex-basis: 11%;
+                width: 11%;
+            }
+
+            &:nth-child(4) {
+               flex-basis: 35%;
+               width: 35%;
+            }
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+
+        .form__item,
+        .form__item:nth-child(3),
+        .form__item:nth-child(4) {
+             flex-basis: 100%;
+             width: 100%;
+             margin: 30px 0 0 0;
+        }
+
+        .button-add-card {
+             flex-basis: 100%;
+             margin: 30px 0 0 0;
+             width: 100%;
+        }
+    }
 `;
+
+const ButtonAddCardStyle = styled(btnDefault)``;
 
 class FormCreateCard extends React.Component {
     constructor(props) {
@@ -121,9 +184,9 @@ class FormCreateCard extends React.Component {
                 <FieldFormWithoutValue ref={this.category} label={"Category"} type={"text"} id={"category"} flagPasswordField={false}/>
                 <FieldFormWithoutValue ref={this.sum} required={true} label={"Amount"} type={"number"} id={"sum"} flagPasswordField={false}/>
                 <FieldFormWithoutValue ref={this.description} label={"Description"} type={"text"} id={"description"} flagPasswordField={false}/>
-                <input type="button" className="button-add-card" value="Add card" onClick={this.addCart}/>
+                <ButtonAddCardStyle type="button" className="button-add-card" onClick={this.addCart}>Add card</ButtonAddCardStyle>
                 {this.state.errorText &&
-                    <p className="massage-error">{this.state.errorText}</p>
+                    <MessageErrorStyle className="massage-error">{this.state.errorText}</MessageErrorStyle>
                 }
             </FormCreateCardStyle>
         )

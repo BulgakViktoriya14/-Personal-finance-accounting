@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import {variablesStyle} from './variablesStyle';
 
 export const linkStyle = styled.a`
         font-weight: bold;
-        color: #b90000;
+        color: ${variablesStyle.colors.colorRed};
 
         &.button {
-            background-color: #fff;
+            background-color: ${variablesStyle.colors.colorWhite};
             border: none;
             padding: 0;
             margin: 10px 0 0 0;
@@ -18,7 +19,7 @@ export const linkStyle = styled.a`
                 left: 0;
                 width: 0;
                 height: 1.5px;
-                background-color: #b90000;
+                background-color: ${variablesStyle.colors.colorRed};
                 transition: 300ms;
             }
 
@@ -35,6 +36,6 @@ export const linkStyle = styled.a`
         }
 
         &:after {
-            background-color: #b90000;
+            background-color: ${variablesStyle.colors.colorRed};
         }
 `;

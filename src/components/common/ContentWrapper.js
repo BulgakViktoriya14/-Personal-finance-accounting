@@ -7,6 +7,32 @@ import CheckIn from './../content/CheckIn';
 import Sidebar from './Sidebar';
 import Profile from './../content/Profile';
 import {connect} from "react-redux";
+import styled from "styled-components";
+import img from '../../images/burger.svg';
+import {variablesStyle} from '../style-components/variablesStyle';
+
+export const ButtonOpenSidebar = styled.button`
+	display: none;
+	position: fixed;
+	left: 0;
+	border: none;
+	background-color: ${variablesStyle.colors.colorBlack};
+	width: 40px;
+	height: 30px;
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image: url(${img});
+	top: 130px;
+
+	@media screen and (max-width: 1100px) {
+		display: block;
+	}
+	
+	@media screen and (max-width: 768px) {
+		top: 70px;
+	}
+`;
 
 class ContentWrapper extends React.Component {
 	constructor(props) {
@@ -23,7 +49,7 @@ class ContentWrapper extends React.Component {
 		return (
 			<section className="content">
 				{this.props.userName &&
-					<button className="button-open-sidebar" onClick={this.openSidebar}/>
+					<ButtonOpenSidebar className="button-open-sidebar" onClick={this.openSidebar}/>
 				}
 				{this.props.userName &&
 					<Sidebar ref={this.blockSidebar}/>

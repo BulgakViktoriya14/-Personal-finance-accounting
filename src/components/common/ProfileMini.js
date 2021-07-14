@@ -3,6 +3,7 @@ import photo from './../../images/profile.png';
 import {connect} from "react-redux";
 import {NavLink} from 'react-router-dom';
 import styled from "styled-components";
+import {variablesStyle} from '../style-components/variablesStyle';
 
 export const ProfileMiniStyle = styled.div`
 	${props => {
@@ -55,12 +56,12 @@ export const ImgLinkStyle = styled(NavLink)`
 `;
 
 export const NameStyle = styled(NavLink)`
-	color: #fff;
+	color: ${variablesStyle.colors.colorWhite};
 	font-size: 18px;
 	line-height: 20px;
 	
 	&:after {
-		background-color: #fff;
+		background-color: ${variablesStyle.colors.colorWhite};
 	}
 	
 	@media screen and (max-width: 768px) {

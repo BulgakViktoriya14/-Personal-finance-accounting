@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import visiblePassword from '../../images/visiblePassword.svg';
 import hiddenPassword from '../../images/hiddenPassword.svg';
+import {variablesStyle} from './variablesStyle';
 
 export const buttonPasswordStyle = styled.button`
     position: absolute;
@@ -8,7 +9,7 @@ export const buttonPasswordStyle = styled.button`
     bottom: 7px;
     height: 19px;
     width: 32px;
-    background-color: #fff;
+    background-color: ${variablesStyle.colors.colorWhite};
     border: none;
     background-image: url(${visiblePassword});
     background-size: 100% 100%;

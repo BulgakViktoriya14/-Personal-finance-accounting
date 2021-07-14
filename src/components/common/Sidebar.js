@@ -3,13 +3,19 @@ import {NavLink} from 'react-router-dom';
 import MoneyAccount from './MoneyAccount';
 import close from './../../images/close.svg';
 import styled from "styled-components";
+import {variablesStyle} from '../style-components/variablesStyle';
 
 export const SidebarStyle = styled.aside`
 	display: flex;
     flex-direction: column;
 	flex-basis: 20%;
-    border-right: 2px solid #000;
+    border-right: 2px solid ${variablesStyle.colors.colorBlack};
 	min-width: 320px;
+	
+	&.sidebar_open {
+		z-index: 2;
+		opacity: 1;
+	}
 	
 	@media screen and (max-width: 1100px) {
 		position: fixed;
@@ -17,7 +23,7 @@ export const SidebarStyle = styled.aside`
 		top: 110px;
 		width: 100%;
 		height: calc(100vh - 110px);
-		background-color: #fff;
+		background-color: ${variablesStyle.colors.colorWhite};
 		transition: 200ms;
 		opacity: 0;
 		z-index: -1;
@@ -58,14 +64,12 @@ export const MenuLinkStyle = styled(NavLink)`
 		line-height: 28px;
 	}
 	
-	&_active {
-		color: #b90000;
+	&.menu-link_active {
+		color: ${variablesStyle.colors.colorRed};
 
 	&:after {
-		background-color: #b90000;
+		background-color: ${variablesStyle.colors.colorRed};
 	}
-
-	
 `;
 
 export const BtnCloseStyle = styled.button`

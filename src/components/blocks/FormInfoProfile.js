@@ -10,6 +10,20 @@ export const FormInfoUserStyle = styled.form`
         flex-basis: 100%;
         width: 100%;
     }
+    
+     .form__item {
+         width: 100%;
+        margin: 0 0 40px 0;
+        flex-basis: 0;
+
+        @media screen and (max-width: 768px) {
+            margin: 0 0 20px 0;
+        }
+     }
+
+     .form__wrapper-buttons {
+         margin: auto 0 0 0;
+     }
 `;
 
 class FormInfoProfile extends React.Component {

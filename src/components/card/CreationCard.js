@@ -2,19 +2,26 @@ import React from 'react';
 import close from "../../images/close.svg";
 import FormCreateCard from "../blocks/FormCreateCard";
 import styled from "styled-components";
+import {variablesStyle} from '../style-components/variablesStyle';
 
 export const BlockCreationCardStyle = styled.div`
 	@media screen and (max-width: 768px) {
 		position: fixed;
         top: 60px;
         left: 0;
+        left: 0;
         height: calc(100vh - 60px);
-        background-color: #fff;
+        background-color: ${variablesStyle.colors.colorWhite};
         z-index: -1;
         opacity: 0;
         transition: 200ms;
         padding: 30px;
         width: 100%;
+        
+         &.creation-card_open {
+            z-index: 2;
+            opacity: 1;
+        }
 	}
 `;
 

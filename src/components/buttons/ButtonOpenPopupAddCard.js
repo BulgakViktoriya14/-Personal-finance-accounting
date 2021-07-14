@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import img from '../../images/plus.svg';
+import {variablesStyle} from '../style-components/variablesStyle';
 
 const BtnOpenPopupAddCard = styled.button`
   display: none;
   position: fixed;
   left: 0;
   border: none;
-  background-color: #000;
+  background-color: ${variablesStyle.colors.colorBlack};
   width: 40px;
   height: 30px;
   background-size: 50%;

@@ -1,18 +1,23 @@
 import styled from 'styled-components';
+import {variablesStyle} from './variablesStyle';
 
 export const formInputStyle = styled.input`
      padding: 5px;
      font-size: 14px;
      line-height: 14px;
-     border-bottom: 1px solid #000;
+     border-bottom: 1px solid ${variablesStyle.colors.colorBlack};
 
      &[readonly] {
         cursor: default;
-        border-bottom: 1px solid #fff;
+        border-bottom: 1px solid ${variablesStyle.colors.colorWhite};
+        
+        &:focus {
+            border-bottom: 1px solid ${variablesStyle.colors.colorWhite};
+         }
      }
 
      &:focus {
-        border-bottom: 1px solid #b90000;
+        border-bottom: 1px solid ${variablesStyle.colors.colorRed};
      }
 
      &[type="file"] {

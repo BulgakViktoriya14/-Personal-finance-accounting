@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import {variablesStyle} from './variablesStyle';
 
 export const btnDefault = styled.button`
-  background-color: #fff;
+  background-color: ${variablesStyle.colors.colorWhite};
   color: #b90000;
   font-size: 16px;
   line-height: 16px;
   padding: 10px 15px;
-  border: 2px solid #b90000;
+  border: 2px solid ${variablesStyle.colors.colorRed};
   transition: 200ms;
   font-weight: bold;
   box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2%);
@@ -14,8 +15,8 @@ export const btnDefault = styled.button`
   &:hover,
   &:active,
   &:focus {
-    background-color: #b90000;
-    color: #fff;
+    background-color: ${variablesStyle.colors.colorRed};
+    color: ${variablesStyle.colors.colorWhite};
   }
 
   @include breakpoint(mobile) {

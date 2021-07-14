@@ -4,6 +4,41 @@ import close from "../../images/close.svg";
 import FormChangeAvatar from "./FormChangeAvatar";
 import FormSetNewPassword from "./FormSetNewPassword";
 import styled from "styled-components";
+import {btnDefault} from "../style-components/buttonStyle";
+import {messageSuccessStyle} from "../style-components/messageSuccessStyle";
+import {variablesStyle} from '../style-components/variablesStyle';
+
+const MessageSuccessStyle = styled(messageSuccessStyle)``;
+
+const BtnDefault = styled(btnDefault)`
+	box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
+`;
+
+const ModalWindowBlockStyle = styled.div`
+    transition: 300ms;
+    width: 500px;
+    background-color: ${variablesStyle.colors.colorWhite};
+    padding: 30px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    cursor: default;
+    
+     @media screen and (max-width: 768px) {
+        width: 100%;
+        height: 100vh;
+        box-shadow: none;
+    }
+`;
+
+
+const ModalWindowTitleStyle = styled.h4`
+    color: $colorRed;
+    font-size: 18px;
+    line-height: 18px;
+    text-align: center;
+    margin: 0 0 30px 0;
+`;
+
 
 export const ModalWindowStyle = styled.div`
     position: fixed;
@@ -25,30 +60,6 @@ export const ModalWindowStyle = styled.div`
     }
 `;
 
-export const ModalWindowBlockStyle = styled.div`
-    transition: 300ms;
-    width: 500px;
-    background-color: #fff;
-    padding: 30px;
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
-    position: relative;
-    cursor: default;
-    
-     @media screen and (max-width: 768px) {
-        width: 100%;
-        height: 100vh;
-        box-shadow: none;
-    }
-`;
-
-
-export const ModalWindowTitleStyle = styled.h4`
-    color: $colorRed;
-    font-size: 18px;
-    line-height: 18px;
-    text-align: center;
-    margin: 0 0 30px 0;
-`;
 
 class ModalWindow extends React.Component {
     constructor(props) {
@@ -124,11 +135,11 @@ class ModalWindow extends React.Component {
                         </div>
                     }
                     {this.props.page === "check-in" &&
-                        <div className="modal-window__content success-result">
+                        <MessageSuccessStyle className="modal-window__content success-result">
                             <p className="success-result__text">You are registered</p>
-                            <button className="form__submit" name="submit"
-                                    onClick={() => this.props.history.push("/login")}>Login to your account</button>
-                        </div>
+                            <BtnDefault className="form__submit" name="submit"
+                                    onClick={() => this.props.history.push("/login")}>Login to your account</BtnDefault>
+                        </MessageSuccessStyle>
                     }
                 </ModalWindowBlockStyle>
             </ModalWindowStyle>

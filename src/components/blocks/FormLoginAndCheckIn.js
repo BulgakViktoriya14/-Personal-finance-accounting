@@ -10,8 +10,25 @@ import {doVisibleOrHiddenPassword} from  "../../functions/doVisibleOrHiddenPassw
 import styled from "styled-components";
 import {btnDefault} from "../style-components/buttonStyle";
 import {linkStyle} from "../style-components/linkStyle";
+import {messageErrorStyle} from "../style-components/messageErrorStyle";
+import {variablesStyle} from '../style-components/variablesStyle';
 
-const BtnLogin = styled(btnDefault)`
+const MessageErrorStyle = styled(messageErrorStyle)``;
+
+const FormWrapperStyle = styled.div`
+	display: flex;
+    flex-basis: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0 0 0;
+`;
+
+const FormWrapperLinkStyle = styled.div`
+	display: flex;
+    flex-direction: column;
+`;
+
+const BtnDefault = styled(btnDefault)`
 	box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
 `;
 
@@ -21,10 +38,27 @@ const FormLogin = styled.form`
     flex-basis: 50%;
     max-width: 500px;
     margin: 0 auto;
+    
+    @media screen and (max-width: 768px) {
+       .form__wrapper-buttons {
+           margin: 0;
+           flex-wrap: wrap;
+       }
+
+       .form__item {
+            margin: 0 0 30px 0;
+            padding: 0;
+       }
+
+        .form__submit,
+        .form__link {
+            margin: 0 0 10px 0;
+        }
+    }
 `;
 
 const BtnForgot = styled(linkStyle)`
-	color: #b90000;
+	color: ${variablesStyle.colors.colorRed};
 	font-weight: bold;
 	cursor: pointer;
  `;
@@ -105,17 +139,17 @@ class FormLoginAndCheckIn extends React.Component {
 				{!this.props.account &&
 					<FieldFormWithValue type={"number"} label={"Starting amount"} id={"money"} value={this.state.money} functionOnChange={this.handleChange}/>
 				}
-				<div className="form__wrapper-buttons">
-					<BtnLogin className="form__submit" onClick={this.logIntoAccount}>{this.props.textButton}</BtnLogin>
-				  	<div className="form__wrapper-link">
+				<FormWrapperStyle className="form__wrapper-buttons">
+					<BtnDefault className="form__submit" onClick={this.logIntoAccount}>{this.props.textButton}</BtnDefault>
+				  	<FormWrapperLinkStyle className="form__wrapper-link">
 						<NavLink to={this.props.link} className="form__link">{this.props.textLink}</NavLink>
 						{this.props.account &&
 							<BtnForgot className="form__link button" onClick={this.setNewPassword}>Forgot your password?</BtnForgot>
 						}
-					</div>
-			    </div>
+					</FormWrapperLinkStyle>
+			    </FormWrapperStyle>
 				{this.state.errorText &&
-					<p className="massage-error">{this.state.errorText}</p>
+					<MessageErrorStyle className="massage-error">{this.state.errorText}</MessageErrorStyle>
 				}
 			</FormLogin>
 		)
