@@ -5,17 +5,17 @@ import {formLabelStyle} from "../style-components/formLabelStyle";
 import {formInputStyle} from "../style-components/formInputStyle";
 import {buttonPasswordStyle} from "../style-components/buttonPasswordStyle";
 
-const FormItem = styled(formItemStyle)`
-    flex-basis: 100%;
-    margin: 25px 0 0 0;
-    padding: 25px 0 0 0;
-`;
-
 const FormLabel = styled(formLabelStyle)``;
 
 const FormInput = styled(formInputStyle)``;
 
 const BtnPassword = styled(buttonPasswordStyle)``;
+
+const FormItem = styled(formItemStyle)`
+    flex-basis: 100%;
+    margin: 25px 0 0 0;
+    padding: 25px 0 0 0;
+`;
 
 class FieldFormWithValue extends React.Component {
     render() {
