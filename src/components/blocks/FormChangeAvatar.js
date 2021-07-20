@@ -84,7 +84,7 @@ class FormChangeAvatar extends React.Component {
         let file = this.props.inputFile.current.files[0];
         let _this = this;
         if(file) {
-            firebase.storage().ref("/avatars").child(`${_this.props.idUser}`).put(file)
+            firebase.storage().ref().child(`avatars/${_this.props.idUser}`).put(file)
                 .then(function(result) {
                     _this.setState({errorText: ""});
                     _this.props.history.go(0);

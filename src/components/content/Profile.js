@@ -85,15 +85,9 @@ class Profile extends React.Component {
 
 	getAvatar = (userId) => {
 		let _this = this;
-		firebase.storage().ref("/avatars").listAll()
-			.then(function (result) {
-				result.items.forEach(function (image) {
-					if (image.name === userId) {
-						image.getDownloadURL().then(function (url) {
-							_this.props.setUserAvatarFunction(url);
-						})
-					}
-				})
+		firebase.storage().ref(`/avatars/${userId}`).getDownloadURL()
+			.then(function (url) {
+				_this.props.setUserAvatarFunction(url);
 			})
 	}
 
