@@ -114,7 +114,7 @@ class Profile extends React.Component {
 	render() {
 		return (
 			<div className="wrapper">
-				<ModalWindow page={"profile-password"} nameClass={"modal-window modal-window__change-password"}/>
+				<ModalWindow page={"profile-password"} nameClass={"modal-window modal-window__change-password"} history={this.props.history}/>
 				<ModalWindow idUser={this.props.userId} page={"profile-avatar"} nameClass={"modal-window modal-window__change-avatar"} history={this.props.history}/>
 				<h1 className="title">Profile</h1>
 				<div className="profile">

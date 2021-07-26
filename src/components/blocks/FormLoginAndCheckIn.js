@@ -39,7 +39,7 @@ class FormLoginAndCheckIn extends React.Component {
 
 		if(this.props.account) {
 			firebase.auth().signInWithEmailAndPassword(email, password)
-			.then(() => document.location.href = "/profile")
+			.then(() => this.props.history.push("/profile"))
 			.catch(error => _this.setState({errorText: error.message}));
 		} else {
 			if (!flag) {
